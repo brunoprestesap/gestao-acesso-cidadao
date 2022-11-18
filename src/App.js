@@ -5,6 +5,8 @@ import HomePage from './pages/HomePage';
 //
 /* import { Toaster } from 'react-hot-toast'; */
 import { Routes, Route } from 'react-router-dom';
+import FormCadastroPessoa from './pages/FormCadastroPessoa';
+import FormUpdatePessoa from './pages/FormUpdatePessoa';
 
 //
 
@@ -15,6 +17,8 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/novousuario" element={<FormCadastroPessoa />} />
+        <Route path="/usuario/:userId" element={<FormUpdatePessoa />} />
         {/* <Route path="/NovoAcesso/:userID" element={<NovoAcesso />} /> */}
       </Routes>
     </div>
