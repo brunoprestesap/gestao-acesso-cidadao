@@ -17,7 +17,8 @@ function NavBar(){
           </Navbar.Brand>
             <Nav className="me-auto">
                 <Nav.Link>Home</Nav.Link>
-                <Nav.Link>Cadastro</Nav.Link>
+                <Nav.Link>Cadastrar Pessoa</Nav.Link>
+                <Nav.Link>Cadastrar Acesso</Nav.Link>
             </Nav>
         </Container>
       </Navbar>
