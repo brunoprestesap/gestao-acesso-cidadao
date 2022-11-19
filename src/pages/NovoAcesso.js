@@ -1,21 +1,24 @@
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
 
 //
 export default function NovoAcesso() {
-  //
+  //Pegasndo o userID definito como parametro em <Route> do (App.js)
   const { userID } = useParams();
+
+  //Instanciando o useNavigate() na constante navigate
+  const navigate = useNavigate();
 
   const [cidadao, setCidadao] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const [form, setForm] = useState({
-    servicoPublico:"",
-    local:"",
-    obs:""    
+    servicoPublico: "",
+    local: "",
+    obs: "",
   });
 
   function handleChange(e) {
@@ -40,17 +43,17 @@ export default function NovoAcesso() {
     getCidadao();
   }, [userID]);
 
-  async function handleEntrada(cidadao) {
-    console.log(cidadao, 'Registro da Entrada');
+  async function handleEntrance(cidadao) {
+    console.log(cidadao, "Cidadão ingressando no recinto");
     //e.preventDefault();
     try {
       //clonando o form para que possamos fazer as alterações necessárias
       let agora = new Date();
-      const horaEntrada = agora.toISOString().slice(0, 16).replace('T', ' h ');
+      const horaEntrada = agora.toISOString().slice(0, 16).replace("T", " h ");
       console.log(horaEntrada);
 
-      //cidadao.acessos[0];
-      let clone = { ...cidadao }; //array da saida
+      //cidadao.acessos[0] -> propriedade  ARRAY na collection "AcessCidadao"
+      let clone = { ...cidadao };
       delete clone._id;
 
       clone.noLocal = true;
@@ -58,58 +61,96 @@ export default function NovoAcesso() {
       console.log(clone);
 
       await axios.put(
-        `https://ironrest.cyclic.app/AcessCidadao/${cidadao._id}`,
+        `https://ironrest.cyclic.app/AcessCidadao/${userID}`,
         clone
       );
+      navigate("/");
 
-      toast.success('Entrada anotada! atualizando página...');
-  
+      toast.success("Acesso registrado com sucesso!!");
     } catch (error) {
-      console.log(error);
-      //toast.error('Algo deu errado. Tente novamente.');
+      toast.error("Algo deu errado! Tente novamente...");
     }
   }
 
   return (
-    <div>
-      <div> Página de Registro do Novo Acesso</div>
-      {!isLoading && <div> Nome {cidadao.nome}</div>}
-      {!isLoading && <div> Nr Doc{cidadao.numDoc}</div>}
-      {!isLoading && (
-        <img src={cidadao.img} alt="foto cidadao" style={{ width: "100px" }} />
+    <Container className="my-4">
+      {isLoading === false && (
+        <Card className="text-center" bg="light">
+
+          <Card.Header>
+            <h3 bg="light">↘ Registro da Entrada </h3>
+            <Card.Title>
+              <img
+                src={cidadao.img}
+                alt="foto cidadao"
+                style={{ width: "200px" }}
+              />
+              <h1>{cidadao.nome}</h1>
+            </Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              <b>→ Documento: </b>
+              {cidadao.tipoDoc}
+              <b> nº </b>
+              {cidadao.numDoc} ←
+            </Card.Subtitle>
+          </Card.Header>
+
+          <Card.Body>
+            <Form>
+              <Row>
+                <Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label>{<b>Informe local de destino</b>}</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Local de destino..."
+                      name="local"
+                      value={form.local}
+                      onChange={handleChange}
+                      autoFocus
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label>{<b>Qual o Serviço Público?</b>}</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Serviço pretendido..."
+                      name="servicoPublico"
+                      value={form.servicoPublico}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label>{<b>Observação</b>}</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Ex.: (Intimado, Testemunha, Juri, etc...)"
+                      name="obs"
+                      value={form.obs}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+            </Form>
+          </Card.Body>
+          
+          <Card.Footer>
+            <Button
+              className="text=center"
+              variant="outline-secondary"
+              onClick={() => handleEntrance(cidadao)}
+            >
+              Salvar
+            </Button>
+          </Card.Footer>
+
+        </Card>
       )}
-
-      <Form>
-
-      <Button variant="outline-secondary" onClick={() => handleEntrada(cidadao)}> Editar Entrada </Button>
-
-      <Form.Group className="mb-3" >
-                        <Form.Label>Local</Form.Label>
-                        <Form.Control
-                          type="text"
-                          placeholder="nome do local"
-                          name="local"
-                          value={form.local}
-                          onChange={handleChange}
-                        />
-                        <Form.Label>Serviço Publico</Form.Label>
-                        <Form.Control
-                          type="text"
-                          placeholder="Nome do serviço"
-                          name="servicoPublico"
-                          value={form.servicoPublico}
-                          onChange={handleChange}
-                        />
-                        <Form.Label>Observação</Form.Label>
-                        <Form.Control
-                          type="text"
-                          placeholder="Insira uma observação"
-                          name="obs"
-                          value={form.obs}
-                          onChange={handleChange}
-                        />
-                      </Form.Group>
-      </Form>
-    </div>
+    </Container>
   );
 }
