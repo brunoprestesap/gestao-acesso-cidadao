@@ -58,8 +58,6 @@ function HomePage() {
   //
   return (
     <div>
-      <div>teste home</div>
-
       <Container className="table-striped">
         <Row>
           <Col>Foto</Col>
