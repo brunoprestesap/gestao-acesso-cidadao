@@ -66,7 +66,7 @@ function HomePage() {
           <Col>Nome</Col>
           <Col>Documento</Col>
           <Col>Acessibilidade</Col>
-          <Col>Entrada</Col>
+          <Col>Último acesso</Col>
           <Col>Saida</Col>
           <Col>Local</Col>
         </Row>
