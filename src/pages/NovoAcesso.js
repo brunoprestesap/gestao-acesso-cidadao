@@ -154,7 +154,7 @@ export default function NovoAcesso() {
             >
               Salvar
             </Button>
-            <Button variant="primary" onClick={<HomePage/>}>
+            <Button variant="outline-secondary" onClick={<HomePage/>}>
             Cancelar
           </Button>
           </Card.Footer>
