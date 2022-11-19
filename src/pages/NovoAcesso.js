@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
+import HomePage from "./HomePage";
 
 //
 export default function NovoAcesso() {
@@ -16,6 +17,7 @@ export default function NovoAcesso() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [form, setForm] = useState({
+    saida:"",
     servicoPublico: "",
     local: "",
     obs: "",
@@ -25,7 +27,7 @@ export default function NovoAcesso() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  //const [reload, setReload] = useState(false);
+  const [reload, setReload] = useState(false);
 
   //
   useEffect(() => {
@@ -33,40 +35,45 @@ export default function NovoAcesso() {
       const response = await axios.get(
         `https://ironrest.cyclic.app/AcessCidadao/${userID}`
       );
-
       console.log(response.data);
-
       setCidadao(response.data);
       setIsLoading(false);
     }
-
     getCidadao();
-  }, [userID]);
+  }, [reload, userID]);
 
   async function handleEntrance(cidadao) {
     console.log(cidadao, "Cidadão ingressando no recinto");
-    //e.preventDefault();
+    /* cidadao.preventDefault(); */
+
     try {
-      //clonando o form para que possamos fazer as alterações necessárias
       let agora = new Date();
       const horaEntrada = agora.toISOString().slice(0, 16).replace("T", " h ");
       console.log(horaEntrada);
 
       //cidadao.acessos[0] -> propriedade  ARRAY na collection "AcessCidadao"
-      let clone = { ...cidadao };
+      const clone = { ...cidadao };
       delete clone._id;
 
       clone.noLocal = true;
       clone.acessos[0].entrada = horaEntrada;
+      clone.acessos[0].saida = form.saida;
+
+      clone.acessos[0].servicoPublico = form.servicoPublico;
+      clone.acessos[0].local = form.local;
+      clone.acessos[0].obs = form.obs;
+    
+
       console.log(clone);
 
       await axios.put(
         `https://ironrest.cyclic.app/AcessCidadao/${userID}`,
         clone
       );
-      navigate("/");
 
       toast.success("Acesso registrado com sucesso!!");
+      setReload(!reload);
+      navigate("/");
     } catch (error) {
       toast.error("Algo deu errado! Tente novamente...");
     }
@@ -74,9 +81,8 @@ export default function NovoAcesso() {
 
   return (
     <Container className="my-4">
-      {isLoading === false && (
+      {!isLoading && (
         <Card className="text-center" bg="light">
-
           <Card.Header>
             <h3 bg="light">↘ Registro da Entrada </h3>
             <Card.Title>
@@ -138,8 +144,9 @@ export default function NovoAcesso() {
               </Row>
             </Form>
           </Card.Body>
-          
+
           <Card.Footer>
+         
             <Button
               className="text=center"
               variant="outline-secondary"
@@ -147,8 +154,10 @@ export default function NovoAcesso() {
             >
               Salvar
             </Button>
+            <Button variant="primary" onClick={<HomePage/>}>
+            Cancelar
+          </Button>
           </Card.Footer>
-
         </Card>
       )}
     </Container>
