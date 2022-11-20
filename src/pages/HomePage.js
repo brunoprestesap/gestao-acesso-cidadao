@@ -103,7 +103,7 @@ function HomePage() {
         >
           Reload
         </Button>
-        <InputGroup className="mb-3">
+        <InputGroup className="my-3">
           <Form.Control
             type="text"
             placeholder="Procura por Nome, Local"
@@ -174,7 +174,7 @@ function HomePage() {
                         )}
                       </td>
 
-                      <td>{cidadao.acessos[0].local}</td>
+                      <td>{cidadao.noLocal ? cidadao.acessos[0].local : ''}</td>
                     </tr>
                   );
                 })}
