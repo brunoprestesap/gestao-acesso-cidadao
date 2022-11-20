@@ -74,7 +74,10 @@ function HomePage() {
     console.log(cidadao, search, 'variaveis do search');
     return (
       cidadao.nome.toLowerCase().includes(search.toLowerCase()) ||
-      cidadao.acessos[0].local.toLowerCase().includes(search.toLowerCase()) ||
+      (cidadao.noLocal &&
+        cidadao.acessos[0].local
+          .toLowerCase()
+          .includes(search.toLowerCase())) ||
       cidadao.numDoc
         .toLowerCase()
         .replaceAll('-', '')
@@ -170,7 +173,7 @@ function HomePage() {
                             Registrar saída
                           </button>
                         ) : (
-                          cidadao.acessos[0].saida
+                          ''
                         )}
                       </td>
 
