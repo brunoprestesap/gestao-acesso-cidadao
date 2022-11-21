@@ -7,6 +7,8 @@ import {
   Spinner,
   Form,
   InputGroup,
+  Col,
+  Row,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 //
@@ -20,14 +22,13 @@ function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [reload, setReload] = useState(false);
   const [search, setSearch] = useState('');
-  //
-
-  //
+  const [filtraNoLocal, setFiltraNoLocal] = useState(false);
+  // endereço da nossa coleção
+  const collectionAdress = 'https://ironrest.cyclic.app/AcessCidadao/';
+  // buscando a lista de cidadaos - GET
   useEffect(() => {
     async function getListaCidadaos() {
-      const response = await axios.get(
-        'https://ironrest.cyclic.app/AcessCidadao'
-      );
+      const response = await axios.get(collectionAdress);
       //console.log(response.data);
       setListaGeral(response.data);
       setIsLoading(false);
@@ -38,6 +39,7 @@ function HomePage() {
   //
   // Botão registrar saida - handle
   async function handleSaida(cidadao) {
+    //
     console.log(cidadao, 'cidadao a ser apagado');
     //e.preventDefault();
     try {
@@ -52,10 +54,7 @@ function HomePage() {
       clone.acessos[0].saida = horaSaida;
       console.log(clone);
 
-      await axios.put(
-        `https://ironrest.cyclic.app/AcessCidadao/${cidadao._id}`,
-        clone
-      );
+      await axios.put(`collectionAdress${cidadao._id}`, clone);
 
       toast.success('Saída anotada, atualizando página...');
       setReload(!reload);
@@ -93,27 +92,48 @@ function HomePage() {
     );
   }
   //
+
+  //
   return (
     <div>
       <Container className="my-3">
-        <Button
-          variant="outline-secondary"
-          size="md"
-          onClick={() => {
-            setReload(!reload);
-            toast.success('Página atualizada');
-          }}
-        >
-          Reload
-        </Button>
-        <InputGroup className="my-3">
-          <Form.Control
-            type="text"
-            placeholder="Procura por Nome, Local"
-            onChange={handleChange}
-            value={search}
-          />
-        </InputGroup>
+        <Row>
+          <Col className="sm ">
+            <Button
+              variant="primary"
+              size="md"
+              onClick={() => {
+                setReload(!reload);
+                toast.success('Página atualizada');
+              }}
+            >
+              Reload
+            </Button>
+          </Col>
+          <Col>
+            <Form.Group>
+              <Form.Check
+                type="checkbox"
+                label="Filtra saídas pendentes"
+                name="active"
+                checked={filtraNoLocal}
+                onChange={() => {
+                  setFiltraNoLocal(!filtraNoLocal);
+                }}
+              />
+            </Form.Group>
+          </Col>
+          <Col>
+            <InputGroup>
+              <Form.Control
+                type="text"
+                placeholder="Procura por Nome, Local, Documento"
+                onChange={handleChange}
+                value={search}
+              />
+            </InputGroup>
+          </Col>
+        </Row>
       </Container>
       <Container className="table-striped">
         <Table striped bordered hover>
@@ -132,14 +152,17 @@ function HomePage() {
             {!isLoading &&
               listaGeral
                 .filter((cidadao) => filtrar(cidadao, search))
+                .filter((cidadao) =>
+                  filtraNoLocal ? cidadao.noLocal === filtraNoLocal : true
+                )
                 .map((cidadao) => {
                   return (
-                    <tr key={cidadao._id}>
+                    <tr style={{ fontSize: '0.8rem' }} key={cidadao._id}>
                       <td>
                         <img
                           src={cidadao.img}
                           alt="foto cidadao"
-                          style={{ width: '70px' }}
+                          style={{ width: '60px' }}
                         />
                       </td>
                       <td>
@@ -148,14 +171,14 @@ function HomePage() {
                         </Link>
                       </td>
                       <td>
-                        {cidadao.numDoc} - {cidadao.numtipoDoc}
+                        {cidadao.numDoc} {cidadao.numtipoDoc}
                       </td>
                       <td>{cidadao.acessibilidade}</td>
                       <td>
                         {!cidadao.noLocal ? (
                           <Link to={`/NovoAcesso/${cidadao._id}`}>
-                            <Button variant="outline-secondary" size="sm">
-                              Novo acesso
+                            <Button variant="success" size="sm">
+                              Regist. acesso
                             </Button>
                           </Link>
                         ) : (
@@ -165,13 +188,15 @@ function HomePage() {
 
                       <td>
                         {cidadao.noLocal ? (
-                          <button
+                          <Button
+                            variant="danger"
+                            size="sm"
                             onClick={() => {
                               handleSaida(cidadao);
                             }}
                           >
-                            Registrar saída
-                          </button>
+                            Regist. saída
+                          </Button>
                         ) : (
                           ''
                         )}
