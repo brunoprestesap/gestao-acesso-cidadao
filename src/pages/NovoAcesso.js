@@ -117,6 +117,7 @@ export default function NovoAcesso() {
                       onChange={handleChange}
                       autoFocus
                     >
+                      <option>Selecione Destino</option>
                       {listSetores.map((setor) => {
                         return (
                           <option value={setor.label}>{setor.label}</option>
@@ -133,6 +134,7 @@ export default function NovoAcesso() {
                       defaultValue={form.servicoPublico}
                       onChange={handleChange}
                     >
+                      <option>Selecione Serviço</option>
                       {listServices.map((service) => {
                         return (
                           <option value={service.label}>{service.label}</option>
@@ -150,13 +152,19 @@ export default function NovoAcesso() {
                       id="obs"
                       name="obs"
                       onChange={handleChange}
-                      value={form.obs}
-                    >   
-                      <option>Selecione</option>           
-                      <option value="intimacao">Intimação</option>
-                      <option value="testemunha">Testemunha</option>
-                      <option value="visitar">Visitar</option>
-                     
+                      defaultValue={form.obs}
+                    >
+                      <option>Selecione Motivo</option>
+                      <option value="audiencia">Audiência</option>                     
+                      <option value="Reunião">Reunião</option>                  
+                      <option value="correios">Correio</option>
+                      <option value="entrega">Entrega</option>
+                      <option value="licitacao">Licitação</option>
+                      <option value="conciliacao">Conciliação</option>
+                      <option value="almoco">Almoço</option>
+                      <option value="trabalho">Trabalho</option>
+                      <option value="visita">Visita</option>
+                      <option value="outros">Outros</option>
                     </Form.Select>
                   </Form.Group>
                 </Col>
@@ -165,10 +173,12 @@ export default function NovoAcesso() {
           </Card.Body>
 
           <Card.Footer>
-            <Button className ="justify-content-between" 
+            <Button
+              className="justify-content-between"
               variant="success"
               type="submit"
-              onClick={() => handleEntrance(cidadao)}>
+              onClick={() => handleEntrance(cidadao)}
+            >
               Salvar
             </Button>
             <Link to={"/"}>
