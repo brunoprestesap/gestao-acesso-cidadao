@@ -10,8 +10,9 @@ import servicos from "../Servicos.json";
 //
 export default function NovoAcesso() {
   const listSetores = setores;
-  console.log(setores);
+  //console.log(setores);
   const listServices = servicos;
+  //console.log(servicos);
 
   //Pegasndo o userID definito como parametro em <Route> do (App.js)
   const { userID } = useParams();
@@ -66,7 +67,7 @@ export default function NovoAcesso() {
       const novoAcesso = {
         entrada: horaEntrada,
         saida: form.saida,
-        serviço: form.servicoPublico,
+        servicoPublico: form.servicoPublico,
         local: form.local,
         obs: form.obs,
       };
@@ -100,10 +101,8 @@ export default function NovoAcesso() {
               />
             </Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              <b> </b>
-              {cidadao.tipoDoc}
-              <b> ⬄ Nº → </b>
-              {cidadao.numDoc}
+              <b>DOCUMENTO → {cidadao.tipoDoc}</b>
+              <b> ⬄ Nº {cidadao.numDoc}</b>
             </Card.Subtitle>
           </Card.Header>
 
@@ -121,7 +120,7 @@ export default function NovoAcesso() {
                     >
                       {listSetores.map((setor) => {
                         return (
-                          <option value={setor.value}>{setor.label}</option>
+                          <option value={setor.label}>{setor.label}</option>
                         );
                       })}
                     </Form.Select>
@@ -137,7 +136,7 @@ export default function NovoAcesso() {
                     >
                       {listServices.map((service) => {
                         return (
-                          <option value={service.value}>{service.label}</option>
+                          <option value={service.label}>{service.label}</option>
                         );
                       })}
                     </Form.Select>
