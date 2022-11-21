@@ -1,6 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Col, Container, Form, Row, Button, Card, Figure } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Form,
+  Row,
+  Button,
+  Card,
+  Figure,
+} from "react-bootstrap";
 import toast from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ListAcessos from "../components/ListAcessos";
@@ -30,7 +38,7 @@ export default function FormUpdatePessoa() {
       setForm(response.data);
     }
     getPessoa();
-  }, []);
+  }, [userId]);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -84,7 +92,7 @@ export default function FormUpdatePessoa() {
                       />
                       <Form.Text className="text-muted"></Form.Text>
                     </Form.Group>
-                  
+
                     <Form.Group className="mb-3" controlId="dataNasc">
                       <Form.Label>Data Nasc.</Form.Label>
                       <Form.Control
@@ -224,23 +232,25 @@ export default function FormUpdatePessoa() {
                   </Col>
                 </Row>
 
-                <Row className="justify-content-md-center">
-                  <Col>
-                    <Button
-                      style={{ marginRight: "25px" }}
-                      variant="success"
-                      type="submit"
-                      onClick={handleSubimit}
-                    >
-                      Cadastrar
-                    </Button>
-                    <Link to={"/"}>
-                      <Button variant="secondary" type="submit">
-                        Cancelar
+                <Container>
+                  <Row>
+                    <Col md={{ span: 4, offset: 4 }}>
+                      <Button
+                        style={{ marginRight: "25px" }}
+                        variant="success"
+                        type="submit"
+                        onClick={handleSubimit}
+                      >
+                        Cadastrar
                       </Button>
-                    </Link>
-                  </Col>
-                </Row>
+                      <Link to={"/"}>
+                        <Button variant="danger">
+                          Cancelar
+                        </Button>
+                      </Link>
+                    </Col>
+                  </Row>
+                </Container>
               </Form>
             </Card.Text>
           </Card.Body>

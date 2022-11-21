@@ -233,7 +233,7 @@ function FormCadastroPessoa() {
                         </Col>
                         <Col>
                           <Link to={"/"}>
-                            <Button variant="secondary" type="submit">
+                            <Button variant="secondary">
                               Cancelar
                             </Button>
                           </Link>
