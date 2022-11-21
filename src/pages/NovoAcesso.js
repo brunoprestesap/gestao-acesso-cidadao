@@ -1,17 +1,20 @@
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
 import HomePage from "./HomePage";
 import setores from "../Setores.json";
+import servicos from "../Servicos.json";
 
 //
 export default function NovoAcesso() {
+  const listSetores = setores;
+  console.log(setores);
+  const listServices = servicos;
+
   //Pegasndo o userID definito como parametro em <Route> do (App.js)
   const { userID } = useParams();
-
-  const listSetores = setores;
 
   //Instanciando o useNavigate() na constante navigate
   const navigate = useNavigate();
@@ -20,7 +23,7 @@ export default function NovoAcesso() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [form, setForm] = useState({
-    saida:"",
+    saida: "",
     servicoPublico: "",
     local: "",
     obs: "",
@@ -59,15 +62,15 @@ export default function NovoAcesso() {
       delete clone._id;
 
       clone.noLocal = true;
-          
+
       const novoAcesso = {
         entrada: horaEntrada,
         saida: form.saida,
         serviço: form.servicoPublico,
         local: form.local,
-        obs: form.obs
-      }
-      clone.acessos.unshift(novoAcesso)
+        obs: form.obs,
+      };
+      clone.acessos.unshift(novoAcesso);
       console.log(clone);
 
       await axios.put(
@@ -88,20 +91,19 @@ export default function NovoAcesso() {
       {!isLoading && (
         <Card className="text-center" bg="light">
           <Card.Header>
-            <h3 bg="light">↘ Registro da Entrada </h3>
             <Card.Title>
+              <h1>⧉{cidadao.nome} </h1>
               <img
                 src={cidadao.img}
                 alt="foto cidadao"
-                style={{ width: "200px" }}
+                style={{ width: "160px" }}
               />
-              <h1>{cidadao.nome}</h1>
             </Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              <b>→ Documento: </b>
+              <b> </b>
               {cidadao.tipoDoc}
-              <b> nº </b>
-              {cidadao.numDoc} ←
+              <b> ⬄ Nº → </b>
+              {cidadao.numDoc}
             </Card.Subtitle>
           </Card.Header>
 
@@ -110,38 +112,43 @@ export default function NovoAcesso() {
               <Row>
                 <Col>
                   <Form.Group className="mb-3">
-                    <Form.Label>{<b>Informe local de destino</b>}</Form.Label>
+                    <Form.Label>{<b>Local de Destino</b>}</Form.Label>
                     <Form.Select
                       name="local"
-                      value={form.local}
+                      defaultValue={form.local}
+                      onChange={handleChange}
+                      autoFocus
+                    >
+                      {listSetores.map((setor) => {
+                        return (
+                          <option value={setor.value}>{setor.label}</option>
+                        );
+                      })}
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label>{<b>Serviço Público</b>}</Form.Label>
+                    <Form.Select
+                      name="servicoPublico"
+                      defaultValue={form.servicoPublico}
                       onChange={handleChange}
                     >
-                    {listSetores.map((setor) => {
-                      return(
-                          <option value={setor.value}>{setor.label}</option>
-                      )
+                      {listServices.map((service) => {
+                        return (
+                          <option value={service.value}>{service.label}</option>
+                        );
                       })}
-                      </Form.Select>
+                    </Form.Select>
                   </Form.Group>
                 </Col>
                 <Col>
                   <Form.Group className="mb-3">
-                    <Form.Label>{<b>Qual o Serviço Público?</b>}</Form.Label>
+                    <Form.Label>{<b>Observação → motivo?</b>}</Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Serviço pretendido..."
-                      name="servicoPublico"
-                      value={form.servicoPublico}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group className="mb-3">
-                    <Form.Label>{<b>Observação</b>}</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Ex.: (Intimado, Testemunha, Juri, etc...)"
+                      placeholder="Ex.:(Intimado, Testemunha, Juri, etc...)"
                       name="obs"
                       value={form.obs}
                       onChange={handleChange}
@@ -153,7 +160,6 @@ export default function NovoAcesso() {
           </Card.Body>
 
           <Card.Footer>
-         
             <Button
               className="text=center"
               variant="outline-secondary"
@@ -161,9 +167,11 @@ export default function NovoAcesso() {
             >
               Salvar
             </Button>
-            <Button variant="outline-secondary" onClick={<HomePage/>}>
-            Cancelar
-          </Button>
+            <Link to={"/"}>
+              <Button variant="outline-secondary" onClick={<HomePage />}>
+                Cancelar
+              </Button>
+            </Link>
           </Card.Footer>
         </Card>
       )}

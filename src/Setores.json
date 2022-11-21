@@ -8,8 +8,20 @@
         "value": "atermacao"
     },
     {
-        "label": "1 Vara", 
-        "value": "1-vara"
+        "label": "1ª Vara Cível", 
+        "value": "1-vara-civil"
     }
-
+    ,
+    {
+        "label": "Câmara Cível", 
+        "value": "camara-civil"
+    },
+    {
+        "label": "Sala de Audiências", 
+        "value": "sala-de-audiencias"
+    },
+    {
+        "label": "Protocolo", 
+        "value": "protocolo"
+    }
 ]

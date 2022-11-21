@@ -1,5 +1,22 @@
-[
-    "Consula Processual",
-    "Participação de Audiência",
-    "Reunião"
+[ 
+    {
+        "label": "Consulta Processual", 
+        "value": "consulta-processual"
+    },
+    {
+        "label": "Audiência", 
+        "value": "audiencia"
+    },
+    {
+        "label": "Reunião", 
+        "value": "reuniao"
+    },
+    {
+        "label": "Petição Inicial", 
+        "value": "peticao-inicial"
+    },
+    {
+        "label": "Senha de Acesso", 
+        "value": "senha-de-acesso"
+    }
 ]

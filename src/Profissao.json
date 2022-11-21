@@ -1,7 +1,26 @@
-[
-    "Advogado",
-    "Professor",
-    "Servidor Público",
-    "Engenheiro",
-    "Outros"
+[{
+    "label": "Advogado", 
+    "value": "advogado"
+},
+{
+    "label": "Professor", 
+    "value": "professor"
+},
+{
+    "label": "Servidor Publico", 
+    "value": "servidorPublico"
+},
+{
+    "label": "Engenheiro", 
+    "value": "engenheiro"
+},
+{
+    "label": "Outros", 
+    "value": "outros"
+    
+},
+{
+    "label": "Descocupado", 
+    "value": "desocupado"
+}
 ]
