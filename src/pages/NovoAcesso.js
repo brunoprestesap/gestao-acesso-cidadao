@@ -4,9 +4,14 @@ import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
 import HomePage from "./HomePage";
+import listaSetores from "../Setores.json";
 
 //
 export default function NovoAcesso() {
+  
+  const setores = listaSetores;
+  console.log(setores);
+
   //Pegasndo o userID definito como parametro em <Route> do (App.js)
   const { userID } = useParams();
 
@@ -17,7 +22,7 @@ export default function NovoAcesso() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [form, setForm] = useState({
-    saida:"",
+    saida: "",
     servicoPublico: "",
     local: "",
     obs: "",
@@ -56,15 +61,15 @@ export default function NovoAcesso() {
       delete clone._id;
 
       clone.noLocal = true;
-          
+
       const novoAcesso = {
         entrada: horaEntrada,
         saida: form.saida,
         serviço: form.servicoPublico,
         local: form.local,
-        obs: form.obs
-      }
-      clone.acessos.unshift(novoAcesso)
+        obs: form.obs,
+      };
+      clone.acessos.unshift(novoAcesso);
       console.log(clone);
 
       await axios.put(
@@ -107,15 +112,21 @@ export default function NovoAcesso() {
               <Row>
                 <Col>
                   <Form.Group className="mb-3">
-                    <Form.Label>{<b>Informe local de destino</b>}</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Local de destino..."
+                    <Form.Label>{<b>Local de destino</b>}</Form.Label>
+                    <Form.Select
                       name="local"
-                      value={form.local}
                       onChange={handleChange}
-                      autoFocus
-                    />
+                      defautValue={form.local}
+                    >
+                      {setores.map((setor, index) => {
+                        return (
+                          <option value={setor[index]}>
+                            {" "}
+                            {setor[index].toUpperCase()}
+                          </option>
+                        );
+                      })}
+                    </Form.Select>
                   </Form.Group>
                 </Col>
                 <Col>
@@ -147,7 +158,6 @@ export default function NovoAcesso() {
           </Card.Body>
 
           <Card.Footer>
-         
             <Button
               className="text=center"
               variant="outline-secondary"
@@ -155,9 +165,9 @@ export default function NovoAcesso() {
             >
               Salvar
             </Button>
-            <Button variant="outline-secondary" onClick={<HomePage/>}>
-            Cancelar
-          </Button>
+            <Button variant="outline-secondary" onClick={<HomePage />}>
+              Cancelar
+            </Button>
           </Card.Footer>
         </Card>
       )}
