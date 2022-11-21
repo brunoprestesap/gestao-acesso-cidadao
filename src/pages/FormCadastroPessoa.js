@@ -65,43 +65,12 @@ function FormCadastroPessoa() {
     getListaCidadaos();
   }, [reload]);
 
-  // search bar
-  function handleSearch(e) {
-    setSearch(e.target.value);
-  }
-  // filtrando o map com o search
-  function filtrar(cidadao, search) {
-    return cidadao.numDoc
-      .toLowerCase()
-      .replaceAll("-", "")
-      .replaceAll(".", "")
-      .replaceAll("/", "")
-      .includes(
-        search
-          .toLowerCase()
-          .replaceAll("-", "")
-          .replaceAll(".", "")
-          .replaceAll("/", "")
-      );
-  }
-  //
-
+  
   return (
      
     <Container>
       <h1> CADASTRAR USUÁRIO</h1>
-      <Container>
-      //pra que uma search bar aqui, se já tem na Home???
-        <InputGroup className="my-3">
-          <Form.Control
-            type="text"
-            placeholder="Digite o número de documento para consultar cadastro já existente"
-            onChange={handleSearch}
-            value={search}
-          />
-        </InputGroup>
-      </Container>
-
+     
       <Form>
         <Row>
           <Col>
@@ -111,7 +80,7 @@ function FormCadastroPessoa() {
                 type="text"
                 placeholder="Nome Completo"
                 name="nome"
-                value={form.name}
+                value={form.nome}
                 onChange={handleChange}
               />
               <Form.Text className="text-muted"></Form.Text>
@@ -123,13 +92,13 @@ function FormCadastroPessoa() {
           <Col>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="tipoDoc">Tipo de Documento</Form.Label>
-              <Form.Select id="tipoDoc" name="tipoDoc" onChange={handleChange}>
+              <Form.Select id="tipoDoc" name="tipoDoc" value={form.tipoDoc} onChange={handleChange}>
                 <option>SELECIONE</option>
-                <option value="CPF">CPF</option>
-                <option value="RG">RG</option>
-                <option value="CNH">CNH</option>
-                <option value="OAB">OAB</option>
-                <option value="Passaporte">Passaporte</option>
+                <option value="cpf">CPF</option>
+                <option value="rg">RG</option>
+                <option value="cnh">CNH</option>
+                <option value="oab">OAB</option>
+                <option value="passaporte">Passaporte</option>
               </Form.Select>
             </Form.Group>
           </Col>
@@ -157,6 +126,7 @@ function FormCadastroPessoa() {
                 id="acessibilidade"
                 name="acessibilidade"
                 onChange={handleChange}
+                value={form.acessibilidade}
               >
                 <option>Selecione uma opção</option>
                 <option value="nenhuma">Nenhuma</option>
@@ -175,6 +145,7 @@ function FormCadastroPessoa() {
                 id="profissao"
                 name="profissao"
                 onChange={handleChange}
+                value={form.profissao}
               >
                 <option>Nenhuma</option>
                 <option value="parte">Parte</option>
@@ -194,7 +165,7 @@ function FormCadastroPessoa() {
           <Col>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="genero">Genero</Form.Label>
-              <Form.Select id="genero" name="genero" onChange={handleChange}>
+              <Form.Select id="genero" name="genero" value={form.genero} onChange={handleChange}>
                 <option>Selecione</option>
                 <option value="feminino">Feminino</option>
                 <option value="masculino">Masculino</option>
