@@ -206,7 +206,12 @@ function HomePage() {
                         )}
                       </td>
 
-                      <td>{cidadao.noLocal ? cidadao.acessos[0].local : ''}</td>
+                      <td>
+                        {cidadao.noLocal ? cidadao.acessos[0].local : ''} <br />{' '}
+                        {cidadao.noLocal
+                          ? `obs: ${cidadao.acessos[0].obs}`
+                          : ''}
+                      </td>
                     </tr>
                   );
                 })}
