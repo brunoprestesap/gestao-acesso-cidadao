@@ -100,7 +100,7 @@ export default function NovoAcesso() {
               />
             </Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              <b>🆔 DOCUMENTO → </b>
+              <b> </b>
               {cidadao.tipoDoc}
               <b> ⬄ Nº → </b>
               {cidadao.numDoc}
@@ -117,6 +117,7 @@ export default function NovoAcesso() {
                       name="local"
                       defaultValue={form.local}
                       onChange={handleChange}
+                      autoFocus
                     >
                       {listSetores.map((setor) => {
                         return (
