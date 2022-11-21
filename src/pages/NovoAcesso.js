@@ -129,13 +129,15 @@ export default function NovoAcesso() {
                 <Col>
                   <Form.Group className="mb-3">
                     <Form.Label>{<b>Serviço Público</b>}</Form.Label>
-                    <Form.Select>
-                      name="servicoPublico" defaultValue={form.servicoPublico}
-                      onChange={handleChange}>
-                      {listServices.map((service)=>{
-                        return(
+                    <Form.Select
+                      name="servicoPublico"
+                      defaultValue={form.servicoPublico}
+                      onChange={handleChange}
+                    >
+                      {listServices.map((service) => {
+                        return (
                           <option value={service.value}>{service.label}</option>
-                        )
+                        );
                       })}
                     </Form.Select>
                   </Form.Group>
@@ -145,7 +147,7 @@ export default function NovoAcesso() {
                     <Form.Label>{<b>Observação → motivo?</b>}</Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Ex.: (Intimado, Testemunha, Juri, etc...)"
+                      placeholder="Ex.:(Intimado, Testemunha, Juri, etc...)"
                       name="obs"
                       value={form.obs}
                       onChange={handleChange}
@@ -165,9 +167,9 @@ export default function NovoAcesso() {
               Salvar
             </Button>
             <Link to={"/"}>
-            <Button variant="outline-secondary" onClick={<HomePage />}>
-              Cancelar
-            </Button>
+              <Button variant="outline-secondary" onClick={<HomePage />}>
+                Cancelar
+              </Button>
             </Link>
           </Card.Footer>
         </Card>
