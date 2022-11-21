@@ -3,7 +3,6 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
-import HomePage from "./HomePage";
 import setores from "../Setores.json";
 import servicos from "../Servicos.json";
 
@@ -101,8 +100,8 @@ export default function NovoAcesso() {
               />
             </Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              <b>DOCUMENTO → {cidadao.tipoDoc}</b>
-              <b> ⬄ Nº {cidadao.numDoc}</b>
+              <b>Documento: {cidadao.tipoDoc.toUpperCase()}</b>
+              <b> ↔ nº {cidadao.numDoc}</b>
             </Card.Subtitle>
           </Card.Header>
 
@@ -118,6 +117,7 @@ export default function NovoAcesso() {
                       onChange={handleChange}
                       autoFocus
                     >
+                      <option>Selecione Destino</option>
                       {listSetores.map((setor) => {
                         return (
                           <option value={setor.label}>{setor.label}</option>
@@ -134,6 +134,7 @@ export default function NovoAcesso() {
                       defaultValue={form.servicoPublico}
                       onChange={handleChange}
                     >
+                      <option>Selecione Serviço</option>
                       {listServices.map((service) => {
                         return (
                           <option value={service.label}>{service.label}</option>
@@ -144,14 +145,27 @@ export default function NovoAcesso() {
                 </Col>
                 <Col>
                   <Form.Group className="mb-3">
-                    <Form.Label>{<b>Observação → motivo?</b>}</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Ex.:(Intimado, Testemunha, Juri, etc...)"
+                    <Form.Label htmlFor="obs">
+                      {<b>Observação → motivo?</b>}
+                    </Form.Label>
+                    <Form.Select
+                      id="obs"
                       name="obs"
-                      value={form.obs}
                       onChange={handleChange}
-                    />
+                      defaultValue={form.obs}
+                    >
+                      <option>Selecione Motivo</option>
+                      <option value="audiencia">Audiência</option>                     
+                      <option value="Reunião">Reunião</option>                  
+                      <option value="correios">Correio</option>
+                      <option value="entrega">Entrega</option>
+                      <option value="licitacao">Licitação</option>
+                      <option value="conciliacao">Conciliação</option>
+                      <option value="almoco">Almoço</option>
+                      <option value="trabalho">Trabalho</option>
+                      <option value="visita">Visita</option>
+                      <option value="outros">Outros</option>
+                    </Form.Select>
                   </Form.Group>
                 </Col>
               </Row>
@@ -160,14 +174,15 @@ export default function NovoAcesso() {
 
           <Card.Footer>
             <Button
-              className="text=center"
-              variant="outline-secondary"
+              className="justify-content-between"
+              variant="success"
+              type="submit"
               onClick={() => handleEntrance(cidadao)}
             >
               Salvar
             </Button>
             <Link to={"/"}>
-              <Button variant="outline-secondary" onClick={<HomePage />}>
+              <Button variant="secondary" type="submit">
                 Cancelar
               </Button>
             </Link>

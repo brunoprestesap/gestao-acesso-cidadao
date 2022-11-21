@@ -24,4 +24,9 @@
         "label": "Protocolo", 
         "value": "protocolo"
     }
+    ,
+    {
+        "label": "Restaurante", 
+        "value": "restaurante"
+    }
 ]

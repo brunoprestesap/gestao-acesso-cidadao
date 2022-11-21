@@ -4,12 +4,12 @@
         "value": "consulta-processual"
     },
     {
-        "label": "Audiência", 
-        "value": "audiencia"
+        "label": "Justiça Gratuita", 
+        "value": "justica-gratuita"
     },
     {
-        "label": "Reunião", 
-        "value": "reuniao"
+        "label": "Campanha de Vacinação", 
+        "value": "campanha-de-vacinacao"
     },
     {
         "label": "Petição Inicial", 
@@ -18,5 +18,14 @@
     {
         "label": "Senha de Acesso", 
         "value": "senha-de-acesso"
+    },
+    {
+        "label": "Alimentação Servidor", 
+        "value": "alimentacao-servidor"
+    }
+    ,
+    {
+        "label": "Outros", 
+        "value": "outros"
     }
 ]
