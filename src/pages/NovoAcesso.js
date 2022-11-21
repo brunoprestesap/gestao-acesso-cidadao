@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
@@ -92,7 +92,7 @@ export default function NovoAcesso() {
         <Card className="text-center" bg="light">
           <Card.Header>
             <Card.Title>
-              <h1>⇨{cidadao.nome} ⇦</h1>
+              <h1>⧉{cidadao.nome} </h1>
               <img
                 src={cidadao.img}
                 alt="foto cidadao"
@@ -100,7 +100,7 @@ export default function NovoAcesso() {
               />
             </Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              <b>DOCUMENTO → </b>
+              <b>🆔 DOCUMENTO → </b>
               {cidadao.tipoDoc}
               <b> ⬄ Nº → </b>
               {cidadao.numDoc}
@@ -142,7 +142,7 @@ export default function NovoAcesso() {
                 </Col>
                 <Col>
                   <Form.Group className="mb-3">
-                    <Form.Label>{<b>Observação</b>}</Form.Label>
+                    <Form.Label>{<b>Observação → motivo?</b>}</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Ex.: (Intimado, Testemunha, Juri, etc...)"
@@ -164,9 +164,11 @@ export default function NovoAcesso() {
             >
               Salvar
             </Button>
+            <Link to={"/"}>
             <Button variant="outline-secondary" onClick={<HomePage />}>
               Cancelar
             </Button>
+            </Link>
           </Card.Footer>
         </Card>
       )}
