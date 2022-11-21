@@ -165,11 +165,11 @@ function FormCadastroPessoa() {
         </Row>
         <Row>
           <Col>
-            <Link to={"/"}>
+            
               <Button variant="success" type="submit" onClick={handleSubimit}>
                 Cadastrar
               </Button>
-            </Link>
+            
           </Col>
           <Col>
             <Link to={"/"}>
