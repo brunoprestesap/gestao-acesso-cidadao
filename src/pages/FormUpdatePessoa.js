@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Col, Container, Form, Row, Button, Card } from "react-bootstrap";
 import toast from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import ListAcessos from "../components/ListAcessos";
 
 export default function FormUpdatePessoa() {
   const { userId } = useParams();
@@ -70,7 +71,7 @@ export default function FormUpdatePessoa() {
           <Card.Body>
             <Card.Text>
                 <Form>
-                  <Row>
+                  <Row className="justify-content-md-center">
                     <Col>
                       <Form.Group className="mb-3" controlId="nome">
                         <Form.Label>Nome</Form.Label>
@@ -99,7 +100,7 @@ export default function FormUpdatePessoa() {
                     </Col>
                   </Row>
 
-                  <Row>
+                  <Row className="justify-content-md-center">
                     <Col>
                       <Form.Group className="mb-3">
                         <Form.Label>Tipo de Documento</Form.Label>
@@ -132,7 +133,7 @@ export default function FormUpdatePessoa() {
                     </Col>
                   </Row>
 
-                  <Row>
+                  <Row className="justify-content-md-center">
                     <Col>
                       <Form.Group className="mb-3">
                         <Form.Label htmlFor="acessibilidade">
@@ -177,7 +178,7 @@ export default function FormUpdatePessoa() {
                     </Col>
                   </Row>
 
-                  <Row>
+                  <Row className="justify-content-md-center">
                     <Col>
                       <Form.Group className="mb-3">
                         <Form.Label htmlFor="genero">Genero</Form.Label>
@@ -206,7 +207,8 @@ export default function FormUpdatePessoa() {
                       </Form.Group>
                     </Col>
                   </Row>
-                  <Row>
+
+                  <Row className="justify-content-md-center">
                     <Col>
                       <Button style={{ marginRight: '25px'}} variant="success" type="submit" onClick={handleSubimit}>
                         Cadastrar
@@ -220,6 +222,24 @@ export default function FormUpdatePessoa() {
                   </Row>
                 </Form>
             </Card.Text>
+          </Card.Body>
+        </Card>
+      </Row>
+      <Row className="justify-content-md-center">
+        <Card
+          border='primary'
+          key='primary'
+          text="dark"
+          style={{ width: "70rem"}}
+          className="mb-2"
+        >
+          <Card.Header>
+            Histórico de visitas
+          </Card.Header>
+          <Card.Body>
+
+              <ListAcessos acessos={form.acessos}/>
+
           </Card.Body>
         </Card>
       </Row>
