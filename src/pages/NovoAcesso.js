@@ -3,7 +3,6 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
-import HomePage from "./HomePage";
 import setores from "../Setores.json";
 import servicos from "../Servicos.json";
 
@@ -101,8 +100,8 @@ export default function NovoAcesso() {
               />
             </Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              <b>DOCUMENTO → {cidadao.tipoDoc}</b>
-              <b> ⬄ Nº {cidadao.numDoc}</b>
+              <b>Documento: {cidadao.tipoDoc.toUpperCase()}</b>
+              <b> ↔ nº {cidadao.numDoc}</b>
             </Card.Subtitle>
           </Card.Header>
 
@@ -144,14 +143,43 @@ export default function NovoAcesso() {
                 </Col>
                 <Col>
                   <Form.Group className="mb-3">
-                    <Form.Label>{<b>Observação → motivo?</b>}</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Ex.:(Intimado, Testemunha, Juri, etc...)"
+                    <Form.Label htmlFor="obs">
+                      {<b>Observação → motivo?</b>}
+                    </Form.Label>
+                    <Form.Select
+                      id="obs"
                       name="obs"
                       value={form.obs}
                       onChange={handleChange}
-                    />
+                    >              
+                      <option value="obs">Intimado/a</option>
+                      <option value="obs">Advogado</option>
+                      <option value="obs">Advogada</option>
+                      <option value="obs">Testemunha</option>
+                      <option value="obs">Defensor Público</option>
+                      <option value="obs">Jurado</option>
+                      <option value="obs">Estagiário</option>
+                      <option value="obs">Motorista</option>
+                      <option value="obs">Membro do Legislativo</option>
+                      <option value="obs">Membro do Executivo</option>
+                      <option value="obs">Desembargador</option>
+                      <option value="obs">Serventuário</option>
+                      <option value="obs">Serventuária</option>
+                      <option value="obs">Magistrado</option>
+                      <option value="obs">Magistrada</option>
+                      <option value="obs">Coloborador/a</option>
+                      <option value="obs">Juiz Leigo/a</option>
+                      <option value="obs">Conciliador/a</option>
+                      <option value="obs">Mediador/a</option>
+                      <option value="obs">Juiz de Paz</option>
+                      <option value="obs">Tabelião</option>
+                      <option value="obs">Equipe da Limpeza</option>
+                      <option value="obs">Procurador Estadual</option>
+                      <option value="obs">Procurador Muncipal</option>
+                      <option value="obs">Policial Militar</option>
+                      <option value="obs">Polícial Civil</option>
+                      <option value="obs">Agente de Segurança</option>
+                    </Form.Select>
                   </Form.Group>
                 </Col>
               </Row>
@@ -161,13 +189,14 @@ export default function NovoAcesso() {
           <Card.Footer>
             <Button
               className="text=center"
-              variant="outline-secondary"
+              variant="success"
+              type="submit"
               onClick={() => handleEntrance(cidadao)}
             >
               Salvar
             </Button>
             <Link to={"/"}>
-              <Button variant="outline-secondary" onClick={<HomePage />}>
+              <Button variant="secondary" type="submit">
                 Cancelar
               </Button>
             </Link>

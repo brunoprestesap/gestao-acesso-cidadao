@@ -221,27 +221,25 @@ function FormCadastroPessoa() {
                           </Form.Group>
                         </Col>
                       </Row>
-                      <Row>
-                        <Col>
-                          <Button
-                            variant="success"
-                            type="submit"
-                            onClick={handleSubimit}
-                          >
-                            Cadastrar
-                          </Button>
-                        </Col>
-                        <Col>
-                          <Link to={"/"}>
-                            <Button variant="secondary" type="submit">
-                              Cancelar
-                            </Button>
-                          </Link>
-                        </Col>
-                      </Row>
                     </Form>
                   </Card.Text>
                 </Card.Body>
+                <Card.Footer>
+                  <Button
+                    className="text=center"
+                    variant="success"
+                    type="submit"
+                    onClick={handleSubimit}
+                  >
+                    Cadastrar
+                  </Button>
+
+                  <Link to={"/"}>
+                    <Button variant="secondary" type="submit">
+                      Cancelar
+                    </Button>
+                  </Link>
+                </Card.Footer>
               </Card>
             </Row>
           </Container>
