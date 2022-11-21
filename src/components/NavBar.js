@@ -1,4 +1,5 @@
 import { Container, Navbar, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import logo from '../assets/download.png';
 function NavBar() {
   return (
@@ -15,8 +16,8 @@ function NavBar() {
           GateControl
         </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/novousuario">Cadastrar Cidadão</Nav.Link>
+          <Nav.Link as={Link} to="/">Home</Nav.Link>
+          <Nav.Link as={Link} to="/novousuario">Cadastrar Cidadão</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
