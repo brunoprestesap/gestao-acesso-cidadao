@@ -157,7 +157,7 @@ function HomePage() {
                 )
                 .map((cidadao) => {
                   return (
-                    <tr style={{ fontSize: '0.8rem' }} key={cidadao._id}>
+                    <tr style={{ fontSize: '0.9rem' }} key={cidadao._id}>
                       <td>
                         <img
                           src={cidadao.img}
