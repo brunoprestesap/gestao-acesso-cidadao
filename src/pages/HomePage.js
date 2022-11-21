@@ -20,6 +20,7 @@ function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [reload, setReload] = useState(false);
   const [search, setSearch] = useState('');
+  const [filtraNoLocal, setFiltraNoLocal] = useState(false);
   //
 
   //
@@ -93,6 +94,8 @@ function HomePage() {
     );
   }
   //
+
+  //
   return (
     <div>
       <Container className="my-3">
@@ -106,6 +109,17 @@ function HomePage() {
         >
           Reload
         </Button>
+        <Form.Group>
+          <Form.Check
+            type="checkbox"
+            label="Filtra saídas pendentes"
+            name="active"
+            checked={filtraNoLocal}
+            onChange={() => {
+              setFiltraNoLocal(!filtraNoLocal);
+            }}
+          />
+        </Form.Group>
         <InputGroup className="my-3">
           <Form.Control
             type="text"
@@ -148,14 +162,14 @@ function HomePage() {
                         </Link>
                       </td>
                       <td>
-                        {cidadao.numDoc} - {cidadao.numtipoDoc}
+                        {cidadao.numDoc} {cidadao.numtipoDoc}
                       </td>
                       <td>{cidadao.acessibilidade}</td>
                       <td>
                         {!cidadao.noLocal ? (
                           <Link to={`/NovoAcesso/${cidadao._id}`}>
                             <Button variant="outline-secondary" size="sm">
-                              Novo acesso
+                              Regist. acesso
                             </Button>
                           </Link>
                         ) : (
@@ -165,13 +179,15 @@ function HomePage() {
 
                       <td>
                         {cidadao.noLocal ? (
-                          <button
+                          <Button
+                            variant="outline-secondary"
+                            size="sm"
                             onClick={() => {
                               handleSaida(cidadao);
                             }}
                           >
-                            Registrar saída
-                          </button>
+                            Regist. saída
+                          </Button>
                         ) : (
                           ''
                         )}
