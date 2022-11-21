@@ -149,36 +149,14 @@ export default function NovoAcesso() {
                     <Form.Select
                       id="obs"
                       name="obs"
-                      value={form.obs}
                       onChange={handleChange}
-                    >              
-                      <option value="obs">Intimado/a</option>
-                      <option value="obs">Advogado</option>
-                      <option value="obs">Advogada</option>
-                      <option value="obs">Testemunha</option>
-                      <option value="obs">Defensor Público</option>
-                      <option value="obs">Jurado</option>
-                      <option value="obs">Estagiário</option>
-                      <option value="obs">Motorista</option>
-                      <option value="obs">Membro do Legislativo</option>
-                      <option value="obs">Membro do Executivo</option>
-                      <option value="obs">Desembargador</option>
-                      <option value="obs">Serventuário</option>
-                      <option value="obs">Serventuária</option>
-                      <option value="obs">Magistrado</option>
-                      <option value="obs">Magistrada</option>
-                      <option value="obs">Coloborador/a</option>
-                      <option value="obs">Juiz Leigo/a</option>
-                      <option value="obs">Conciliador/a</option>
-                      <option value="obs">Mediador/a</option>
-                      <option value="obs">Juiz de Paz</option>
-                      <option value="obs">Tabelião</option>
-                      <option value="obs">Equipe da Limpeza</option>
-                      <option value="obs">Procurador Estadual</option>
-                      <option value="obs">Procurador Muncipal</option>
-                      <option value="obs">Policial Militar</option>
-                      <option value="obs">Polícial Civil</option>
-                      <option value="obs">Agente de Segurança</option>
+                      value={form.obs}
+                    >   
+                      <option>Selecione</option>           
+                      <option value="intimacao">Intimação</option>
+                      <option value="testemunha">Testemunha</option>
+                      <option value="visitar">Visitar</option>
+                     
                     </Form.Select>
                   </Form.Group>
                 </Col>
@@ -187,12 +165,10 @@ export default function NovoAcesso() {
           </Card.Body>
 
           <Card.Footer>
-            <Button
-              className="text=center"
+            <Button className ="justify-content-between" 
               variant="success"
               type="submit"
-              onClick={() => handleEntrance(cidadao)}
-            >
+              onClick={() => handleEntrance(cidadao)}>
               Salvar
             </Button>
             <Link to={"/"}>
