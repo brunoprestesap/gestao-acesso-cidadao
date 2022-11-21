@@ -1,7 +1,15 @@
 [
-    "Atermação",
-    "1 Vara Federal",
-    "2 Vara Federal",
-    "Sala da OAB",
-    "Tecnologia da Informação"
+    {
+        "label": "Administração", 
+        "value": "administracao"
+    },
+    {
+        "label": "Atermação", 
+        "value": "atermacao"
+    },
+    {
+        "label": "1 Vara", 
+        "value": "1-vara"
+    }
+
 ]
