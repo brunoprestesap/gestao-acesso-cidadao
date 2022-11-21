@@ -1,5 +1,18 @@
 [ 
-    "Consulta Processual",
-    "Audiência",
-    "Reunião"
+    {
+        "label": "Consulta Processual", 
+        "value": "consultaProcessual"
+    },
+    {
+        "label": "Audiência", 
+        "value": "audiencia"
+    },
+    {
+        "label": "Reunião", 
+        "value": "reuniao"
+    }
+    {
+        "label": "Petição Inicial", 
+        "value": "peticaoInicial"
+    }
 ]

@@ -90,12 +90,12 @@ export default function NovoAcesso() {
       {!isLoading && (
         <Card className="text-center" bg="light">
           <Card.Header>
-            <h3 bg="light">↘ Registro da Entrada </h3>
+            <h3>↘ Registro de Entrada </h3>
             <Card.Title>
               <img
                 src={cidadao.img}
                 alt="foto cidadao"
-                style={{ width: "200px" }}
+                style={{ width: "160px" }}
               />
               <h1>{cidadao.nome}</h1>
             </Card.Title>
