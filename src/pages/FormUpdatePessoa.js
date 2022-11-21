@@ -215,10 +215,11 @@ export default function FormUpdatePessoa() {
                       <Form.Control
                         type="text"
                         placeholder="link para foto"
-                        name="foto"
+                        name="img"
                         value={form.img}
                         onChange={handleChange}
                       />
+                      <Form.Text className="text-muted"></Form.Text>
                     </Form.Group>
                   </Col>
                 </Row>
