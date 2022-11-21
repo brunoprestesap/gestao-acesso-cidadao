@@ -11,6 +11,7 @@ function FormCadastroPessoa() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     nome: "",
+    dataNasc:"",
     tipoDoc: "",
     numDoc: "",
     profissao: "",
@@ -31,6 +32,7 @@ function FormCadastroPessoa() {
       await axios.post("https://ironrest.cyclic.app/AcessCidadao", form);
       setForm({
         nome: "",
+        dataNasc:"",
         tipoDoc: "",
         numDoc: "",
         profissao: "",
@@ -50,11 +52,11 @@ function FormCadastroPessoa() {
   }
 
   return (
-    <Container>
-    
-
+    <div>
       <h1 style={{textAlign:"center", padding:"50px"}}> FORMULÁRIO DE CADASTRO </h1>
-   
+      <Row>
+        <Col>
+          <Container>
      
 
       <Form>
@@ -72,6 +74,21 @@ function FormCadastroPessoa() {
               <Form.Text className="text-muted"></Form.Text>
             </Form.Group>
           </Col>
+          <Col>
+          <Col>
+            <Form.Group className="mb-3" controlId="dataNasc">
+              <Form.Label>Data de Nascimento</Form.Label>
+              <Form.Control
+                type="date"
+                placeholder="data"
+                name="dataNasc"
+                value={form.dataNasc}
+                onChange={handleChange}
+              />
+              <Form.Text className="text-muted"></Form.Text>
+            </Form.Group>
+          </Col>
+          </Col>
           <Col className="col-lg-2">
             <Form.Group className="mb-3">
               <Form.Label htmlFor="genero">Genero</Form.Label>
@@ -88,6 +105,7 @@ function FormCadastroPessoa() {
               </Form.Select>
             </Form.Group>
           </Col>
+
         </Row>
 
         <Row>
@@ -198,7 +216,18 @@ function FormCadastroPessoa() {
           </Col>
         </Row>
       </Form>
-    </Container>
+          </Container>
+        </Col>
+        <Col className="col-lg-3" style={{display:'flex'}}>
+        <Container>
+          <img src={form.img} alt="Foto do Usuário Cadastrado" style={{alignContent:"center"}}></img>
+        </Container>
+
+        </Col>
+      </Row>
+   
+    </div>
+
   );
 }
 
