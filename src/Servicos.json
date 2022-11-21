@@ -1,7 +1,7 @@
 [ 
     {
         "label": "Consulta Processual", 
-        "value": "consultaProcessual"
+        "value": "consulta-processual"
     },
     {
         "label": "Audiência", 
@@ -13,6 +13,10 @@
     },
     {
         "label": "Petição Inicial", 
-        "value": "peticaoInicial"
+        "value": "peticao-inicial"
+    },
+    {
+        "label": "Senha de Acesso", 
+        "value": "senha-de-acesso"
     }
 ]

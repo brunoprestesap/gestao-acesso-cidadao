@@ -5,12 +5,13 @@ import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
 import HomePage from "./HomePage";
 import setores from "../Setores.json";
+import servicos from "../Servicos.json";
 
 //
 export default function NovoAcesso() {
-  
   const listSetores = setores;
   console.log(setores);
+  const listServices = servicos;
 
   //Pegasndo o userID definito como parametro em <Route> do (App.js)
   const { userID } = useParams();
@@ -90,20 +91,19 @@ export default function NovoAcesso() {
       {!isLoading && (
         <Card className="text-center" bg="light">
           <Card.Header>
-            <h3>↘ Registro de Entrada </h3>
             <Card.Title>
+              <h1>⇨{cidadao.nome} ⇦</h1>
               <img
                 src={cidadao.img}
                 alt="foto cidadao"
                 style={{ width: "160px" }}
               />
-              <h1>{cidadao.nome}</h1>
             </Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              <b>→ Documento: </b>
+              <b>DOCUMENTO → </b>
               {cidadao.tipoDoc}
-              <b> nº </b>
-              {cidadao.numDoc} ←
+              <b> ⬄ Nº → </b>
+              {cidadao.numDoc}
             </Card.Subtitle>
           </Card.Header>
 
@@ -111,31 +111,33 @@ export default function NovoAcesso() {
             <Form>
               <Row>
                 <Col>
-                <Form.Group className="mb-3">
-                    <Form.Label>{<b>Local de destino</b>}</Form.Label>
+                  <Form.Group className="mb-3">
+                    <Form.Label>{<b>Local de Destino</b>}</Form.Label>
                     <Form.Select
                       name="local"
                       defaultValue={form.local}
                       onChange={handleChange}
                     >
-                    {listSetores.map((setor) => {
-                      return(
+                      {listSetores.map((setor) => {
+                        return (
                           <option value={setor.value}>{setor.label}</option>
-                      )
+                        );
                       })}
-                      </Form.Select>
+                    </Form.Select>
                   </Form.Group>
                 </Col>
                 <Col>
                   <Form.Group className="mb-3">
-                    <Form.Label>{<b>Qual o Serviço Público?</b>}</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Serviço pretendido..."
-                      name="servicoPublico"
-                      value={form.servicoPublico}
-                      onChange={handleChange}
-                    />
+                    <Form.Label>{<b>Serviço Público</b>}</Form.Label>
+                    <Form.Select>
+                      name="servicoPublico" defaultValue={form.servicoPublico}
+                      onChange={handleChange}>
+                      {listServices.map((service)=>{
+                        return(
+                          <option value={service.value}>{service.label}</option>
+                        )
+                      })}
+                    </Form.Select>
                   </Form.Group>
                 </Col>
                 <Col>
