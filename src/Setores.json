@@ -1,7 +1,15 @@
-{}
-    "opcao1"Atermação",
-    "1ª Vara Cívil",
-    "2ª Vara Cível",
-    "Sala da OAB",
-    "Tecnologia da Informação"
+[
+    {
+        "label": "Administração", 
+        "value": "administracao"
+    },
+    {
+        "label": "Atermação", 
+        "value": "atermacao"
+    },
+    {
+        "label": "1 Vara", 
+        "value": "1-vara"
+    }
+
 ]

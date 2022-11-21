@@ -24,7 +24,7 @@ function HomePage() {
   const [search, setSearch] = useState('');
   const [filtraNoLocal, setFiltraNoLocal] = useState(false);
   // endereço da nossa coleção
-  const collectionAdress = 'https://ironrest.cyclic.app/AcessCidadao/';
+  var collectionAdress = 'https://ironrest.cyclic.app/AcessCidadao/';
   // buscando a lista de cidadaos - GET
   useEffect(() => {
     async function getListaCidadaos() {
@@ -35,7 +35,7 @@ function HomePage() {
     }
 
     getListaCidadaos();
-  }, [reload]);
+  }, [reload, collectionAdress]);
   //
   // Botão registrar saida - handle
   async function handleSaida(cidadao) {
@@ -52,9 +52,12 @@ function HomePage() {
       delete clone._id;
       clone.noLocal = false;
       clone.acessos[0].saida = horaSaida;
-      console.log(clone);
+      console.log(clone, 'clone da saida');
 
-      await axios.put(`collectionAdress${cidadao._id}`, clone);
+      await axios.put(
+        `https://ironrest.cyclic.app/AcessCidadao/${cidadao._id}`,
+        clone
+      );
 
       toast.success('Saída anotada, atualizando página...');
       setReload(!reload);
@@ -70,7 +73,7 @@ function HomePage() {
   }
   // filtrando o map com o search
   function filtrar(cidadao, search) {
-    console.log(cidadao, search, 'variaveis do search');
+    //console.log(cidadao, search, 'variaveis do search');
     return (
       cidadao.nome.toLowerCase().includes(search.toLowerCase()) ||
       (cidadao.noLocal &&
@@ -92,13 +95,13 @@ function HomePage() {
     );
   }
   //
-
+  //-------------------------------//
   //
   return (
     <div>
       <Container className="my-3">
         <Row>
-          <Col className="sm ">
+          <Col className="sm" xs={2}>
             <Button
               variant="primary"
               size="md"
@@ -110,9 +113,10 @@ function HomePage() {
               Reload
             </Button>
           </Col>
-          <Col>
+          <Col xs={4}>
             <Form.Group>
               <Form.Check
+                className="mt-2"
                 type="checkbox"
                 label="Filtra saídas pendentes"
                 name="active"
@@ -123,7 +127,7 @@ function HomePage() {
               />
             </Form.Group>
           </Col>
-          <Col>
+          <Col xs={6}>
             <InputGroup>
               <Form.Control
                 type="text"
@@ -157,7 +161,7 @@ function HomePage() {
                 )
                 .map((cidadao) => {
                   return (
-                    <tr style={{ fontSize: '0.8rem' }} key={cidadao._id}>
+                    <tr style={{ fontSize: '0.9rem' }} key={cidadao._id}>
                       <td>
                         <img
                           src={cidadao.img}

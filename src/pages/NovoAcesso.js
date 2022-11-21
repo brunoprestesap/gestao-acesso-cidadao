@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
 import HomePage from "./HomePage";
-import listaSetores from "../Setores.json";
 
 //
 export default function NovoAcesso() {
@@ -14,6 +13,8 @@ export default function NovoAcesso() {
 
   //Pegasndo o userID definito como parametro em <Route> do (App.js)
   const { userID } = useParams();
+
+  const listSetores = setores;
 
   //Instanciando o useNavigate() na constante navigate
   const navigate = useNavigate();
@@ -112,21 +113,14 @@ export default function NovoAcesso() {
               <Row>
                 <Col>
                   <Form.Group className="mb-3">
-                    <Form.Label>{<b>Local de destino</b>}</Form.Label>
-                    <Form.Select
+                    <Form.Label>{<b>Informe local de destino</b>}</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Local de destino..."
                       name="local"
                       onChange={handleChange}
-                      defautValue={form.local}
-                    >
-                      {setores.map((setor, index) => {
-                        return (
-                          <option value={setor[index]}>
-                            {" "}
-                            {setor[index].toUpperCase()}
-                          </option>
-                        );
-                      })}
-                    </Form.Select>
+                      autoFocus
+                    />
                   </Form.Group>
                 </Col>
                 <Col>
