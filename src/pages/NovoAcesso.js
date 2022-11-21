@@ -56,14 +56,15 @@ export default function NovoAcesso() {
       delete clone._id;
 
       clone.noLocal = true;
-      clone.acessos[0].entrada = horaEntrada;
-      clone.acessos[0].saida = form.saida;
-
-      clone.acessos[0].servicoPublico = form.servicoPublico;
-      clone.acessos[0].local = form.local;
-      clone.acessos[0].obs = form.obs;
-    
-
+          
+      const novoAcesso = {
+        entrada: horaEntrada,
+        saida: form.saida,
+        serviço: form.servicoPublico,
+        local: form.local,
+        obs: form.obs
+      }
+      clone.acessos.unshift(novoAcesso)
       console.log(clone);
 
       await axios.put(
