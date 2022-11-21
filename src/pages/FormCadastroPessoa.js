@@ -1,12 +1,17 @@
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button, InputGroup } from "react-bootstrap";
 import { Container } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 function FormCadastroPessoa() {
   const [reload, setReload] = useState(false);
+  const [search, setSearch] = useState("");
+  const [listaGeral, setListaGeral] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     nome: "",
     tipoDoc: "",
@@ -14,7 +19,7 @@ function FormCadastroPessoa() {
     profissao: "",
     acessibilidade: "",
     genero: "",
-    foto: "",
+    img: "",
     acessos: [],
     noLocal: false,
   });
@@ -34,21 +39,68 @@ function FormCadastroPessoa() {
         profissao: "",
         acessibilidade: "",
         genero: "",
-        foto: "",
+        img: "",
         acessos: [],
         noLocal: false,
       });
       toast.success("Cadastro realizado com sucesso.");
-      setReload(!reload)
+      setReload(!reload);
+      navigate("/")
     } catch (error) {
       console.log(error);
       toast.error("Algo deu errado. Tente novamente.");
     }
   }
 
+  //Buscar usuário já cadastrado, copiado da Home, apenas pelo numDoc
+  useEffect(() => {
+    async function getListaCidadaos() {
+      const response = await axios.get(
+        "https://ironrest.cyclic.app/AcessCidadao"
+      );
+
+      setListaGeral(response.data);
+      setIsLoading(false);
+    }
+    getListaCidadaos();
+  }, [reload]);
+
+  // search bar
+  function handleSearch(e) {
+    setSearch(e.target.value);
+  }
+  // filtrando o map com o search
+  function filtrar(cidadao, search) {
+    return cidadao.numDoc
+      .toLowerCase()
+      .replaceAll("-", "")
+      .replaceAll(".", "")
+      .replaceAll("/", "")
+      .includes(
+        search
+          .toLowerCase()
+          .replaceAll("-", "")
+          .replaceAll(".", "")
+          .replaceAll("/", "")
+      );
+  }
+  //
+
   return (
+     
     <Container>
       <h1> CADASTRAR USUÁRIO</h1>
+      <Container>
+      //pra que uma search bar aqui, se já tem na Home???
+        <InputGroup className="my-3">
+          <Form.Control
+            type="text"
+            placeholder="Digite o número de documento para consultar cadastro já existente"
+            onChange={handleSearch}
+            value={search}
+          />
+        </InputGroup>
+      </Container>
 
       <Form>
         <Row>
@@ -151,13 +203,13 @@ function FormCadastroPessoa() {
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group className="mb-3" controlId="foto">
-              <Form.Label>Foto </Form.Label>
+            <Form.Group className="mb-3" controlId="img">
+              <Form.Label>img </Form.Label>
               <Form.Control
                 type="text"
-                placeholder="link para foto"
-                name="foto"
-                value={form.foto}
+                placeholder="link para Foto"
+                name="img"
+                value={form.img}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -165,11 +217,9 @@ function FormCadastroPessoa() {
         </Row>
         <Row>
           <Col>
-            
-              <Button variant="success" type="submit" onClick={handleSubimit}>
-                Cadastrar
-              </Button>
-            
+            <Button variant="success" type="submit" onClick={handleSubimit}>
+              Cadastrar
+            </Button>
           </Col>
           <Col>
             <Link to={"/"}>
