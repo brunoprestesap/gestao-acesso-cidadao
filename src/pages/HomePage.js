@@ -1,6 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Col, Row, Container, Button } from 'react-bootstrap';
+import {
+  Container,
+  Button,
+  Table,
+  Spinner,
+  Form,
+  InputGroup,
+} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 //
 import toast from 'react-hot-toast';
@@ -12,6 +19,9 @@ function HomePage() {
   const [listaGeral, setListaGeral] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [reload, setReload] = useState(false);
+  const [search, setSearch] = useState('');
+  //
+
   //
   useEffect(() => {
     async function getListaCidadaos() {
@@ -51,82 +61,130 @@ function HomePage() {
       setReload(!reload);
     } catch (error) {
       console.log(error);
-      //toast.error('Algo deu errado. Tente novamente.');
+      toast.error('Algo deu errado. Tente novamente.');
     }
     //
+  }
+  // search bar
+  function handleChange(e) {
+    setSearch(e.target.value);
+  }
+  // filtrando o map com o search
+  function filtrar(cidadao, search) {
+    console.log(cidadao, search, 'variaveis do search');
+    return (
+      cidadao.nome.toLowerCase().includes(search.toLowerCase()) ||
+      (cidadao.noLocal &&
+        cidadao.acessos[0].local
+          .toLowerCase()
+          .includes(search.toLowerCase())) ||
+      cidadao.numDoc
+        .toLowerCase()
+        .replaceAll('-', '')
+        .replaceAll('.', '')
+        .replaceAll('/', '')
+        .includes(
+          search
+            .toLowerCase()
+            .replaceAll('-', '')
+            .replaceAll('.', '')
+            .replaceAll('/', '')
+        )
+    );
   }
   //
   return (
     <div>
-      <Container className="table-striped">
-        <Row>
-          <Col>Foto</Col>
-          <Col>Nome</Col>
-          <Col>Documento</Col>
-          <Col>Acessibilidade</Col>
-          <Col>Entrada</Col>
-          <Col>Saida</Col>
-          <Col>Local</Col>
-        </Row>
-
-        {!isLoading &&
-          listaGeral.map((cidadao) => {
-            return (
-              <Row key={cidadao._id} className="table-warning">
-                <Col>
-                  <img
-                    src={cidadao.img}
-                    alt="foto cidadao"
-                    style={{ width: '100px' }}
-                  />
-                </Col>
-                <Col>
-                  <Link to={`/usuario/${cidadao._id}`}>{cidadao.nome}</Link>
-                </Col>
-                <Col>
-                  {cidadao.numDoc} - {cidadao.numtipoDoc}
-                </Col>
-                <Col>{cidadao.acessibilidade}</Col>
-                <Col>
-                  {!cidadao.noLocal ? (
-                    <Link to={`/NovoAcesso/${cidadao._id}`}>
-                      <Button variant="outline-secondary" size="sm">
-                        Novo acesso
-                      </Button>
-                    </Link>
-                  ) : (
-                    cidadao.acessos[0].entrada
-                  )}
-                </Col>
-
-                <Col>
-                  {cidadao.noLocal ? (
-                    <button
-                      onClick={() => {
-                        handleSaida(cidadao);
-                      }}
-                    >
-                      Registrar saída
-                    </button>
-                  ) : (
-                    cidadao.acessos[0].saida
-                  )}
-                </Col>
-
-                <Col>{cidadao.acessos[0].local}</Col>
-              </Row>
-            );
-          })}
+      <Container className="my-3">
+        <Button
+          variant="outline-secondary"
+          size="md"
+          onClick={() => {
+            setReload(!reload);
+            toast.success('Página atualizada');
+          }}
+        >
+          Reload
+        </Button>
+        <InputGroup className="my-3">
+          <Form.Control
+            type="text"
+            placeholder="Procura por Nome, Local"
+            onChange={handleChange}
+            value={search}
+          />
+        </InputGroup>
       </Container>
-      <Button
-        variant="outline-secondary"
-        size="md"
-        onClick={() => {
-          setReload(!reload);
-        }}
-      >
-        Reload
-      </Button>
+      <Container className="table-striped">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Foto</th>
+              <th>Nome</th>
+              <th>Documento</th>
+              <th>Acessibilidade</th>
+              <th>Último acesso</th>
+              <th>Saida</th>
+              <th>Local</th>
+            </tr>
+          </thead>
+          <tbody>
+            {!isLoading &&
+              listaGeral
+                .filter((cidadao) => filtrar(cidadao, search))
+                .map((cidadao) => {
+                  return (
+                    <tr key={cidadao._id}>
+                      <td>
+                        <img
+                          src={cidadao.img}
+                          alt="foto cidadao"
+                          style={{ width: '70px' }}
+                        />
+                      </td>
+                      <td>
+                        <Link to={`/usuario/${cidadao._id}`}>
+                          {cidadao.nome}
+                        </Link>
+                      </td>
+                      <td>
+                        {cidadao.numDoc} - {cidadao.numtipoDoc}
+                      </td>
+                      <td>{cidadao.acessibilidade}</td>
+                      <td>
+                        {!cidadao.noLocal ? (
+                          <Link to={`/NovoAcesso/${cidadao._id}`}>
+                            <Button variant="outline-secondary" size="sm">
+                              Novo acesso
+                            </Button>
+                          </Link>
+                        ) : (
+                          cidadao.acessos[0].entrada
+                        )}
+                      </td>
+
+                      <td>
+                        {cidadao.noLocal ? (
+                          <button
+                            onClick={() => {
+                              handleSaida(cidadao);
+                            }}
+                          >
+                            Registrar saída
+                          </button>
+                        ) : (
+                          ''
+                        )}
+                      </td>
+
+                      <td>{cidadao.noLocal ? cidadao.acessos[0].local : ''}</td>
+                    </tr>
+                  );
+                })}
+          </tbody>
+          {isLoading && <Spinner animation="border" variant="warning" />}
+        </Table>
+      </Container>
     </div>
   );
 }
