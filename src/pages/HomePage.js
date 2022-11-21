@@ -162,7 +162,7 @@ function HomePage() {
                         <img
                           src={cidadao.img}
                           alt="foto cidadao"
-                          style={{ width: '70px' }}
+                          style={{ width: '60px' }}
                         />
                       </td>
                       <td>
