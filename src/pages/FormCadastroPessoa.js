@@ -1,6 +1,6 @@
-import { Form, Row, Col, Button, InputGroup } from "react-bootstrap";
+import { Form, Row, Col, Button } from "react-bootstrap";
 import { Container } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -8,9 +8,6 @@ import { Link } from "react-router-dom";
 
 function FormCadastroPessoa() {
   const [reload, setReload] = useState(false);
-  const [search, setSearch] = useState("");
-  const [listaGeral, setListaGeral] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const [form, setForm] = useState({
     nome: "",
@@ -45,32 +42,21 @@ function FormCadastroPessoa() {
       });
       toast.success("Cadastro realizado com sucesso.");
       setReload(!reload);
-      navigate("/")
+      navigate("/");
     } catch (error) {
       console.log(error);
       toast.error("Algo deu errado. Tente novamente.");
     }
   }
 
-  //Buscar usuário já cadastrado, copiado da Home, apenas pelo numDoc
-  useEffect(() => {
-    async function getListaCidadaos() {
-      const response = await axios.get(
-        "https://ironrest.cyclic.app/AcessCidadao"
-      );
-
-      setListaGeral(response.data);
-      setIsLoading(false);
-    }
-    getListaCidadaos();
-  }, [reload]);
-
-  
   return (
-     
     <Container>
-      <h1> CADASTRAR USUÁRIO</h1>
+    
+
+      <h1 style={{textAlign:"center", padding:"50px"}}> FORMULÁRIO DE CADASTRO </h1>
+   
      
+
       <Form>
         <Row>
           <Col>
@@ -86,13 +72,34 @@ function FormCadastroPessoa() {
               <Form.Text className="text-muted"></Form.Text>
             </Form.Group>
           </Col>
+          <Col className="col-lg-2">
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="genero">Genero</Form.Label>
+              <Form.Select
+                id="genero"
+                name="genero"
+                value={form.genero}
+                onChange={handleChange}
+              >
+                <option>Selecione</option>
+                <option value="feminino">Feminino</option>
+                <option value="masculino">Masculino</option>
+                <option value="outro">Outro</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
         </Row>
 
         <Row>
-          <Col>
+          <Col className="col-lg-4">
             <Form.Group className="mb-3">
               <Form.Label htmlFor="tipoDoc">Tipo de Documento</Form.Label>
-              <Form.Select id="tipoDoc" name="tipoDoc" value={form.tipoDoc} onChange={handleChange}>
+              <Form.Select
+                id="tipoDoc"
+                name="tipoDoc"
+                value={form.tipoDoc}
+                onChange={handleChange}
+              >
                 <option>SELECIONE</option>
                 <option value="cpf">CPF</option>
                 <option value="rg">RG</option>
@@ -128,7 +135,7 @@ function FormCadastroPessoa() {
                 onChange={handleChange}
                 value={form.acessibilidade}
               >
-                <option>Selecione uma opção</option>
+                <option>SELECIONE</option>
                 <option value="nenhuma">Nenhuma</option>
                 <option value="fisica">Deficiência física</option>
                 <option value="visual">Deficiência visual</option>
@@ -147,7 +154,7 @@ function FormCadastroPessoa() {
                 onChange={handleChange}
                 value={form.profissao}
               >
-                <option>Nenhuma</option>
+                <option>SELECIONE</option>
                 <option value="parte">Parte</option>
                 <option value="advogado">Advogado/a</option>
                 <option value="servico">Serviços</option>
@@ -162,23 +169,13 @@ function FormCadastroPessoa() {
         </Row>
 
         <Row>
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label htmlFor="genero">Genero</Form.Label>
-              <Form.Select id="genero" name="genero" value={form.genero} onChange={handleChange}>
-                <option>Selecione</option>
-                <option value="feminino">Feminino</option>
-                <option value="masculino">Masculino</option>
-                <option value="outro">Outro</option>
-              </Form.Select>
-            </Form.Group>
-          </Col>
+          
           <Col>
             <Form.Group className="mb-3" controlId="img">
-              <Form.Label>img </Form.Label>
+              <Form.Label>Foto </Form.Label>
               <Form.Control
                 type="text"
-                placeholder="link para Foto"
+                placeholder="Insira o link para a foto"
                 name="img"
                 value={form.img}
                 onChange={handleChange}
