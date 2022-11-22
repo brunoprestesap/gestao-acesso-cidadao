@@ -226,6 +226,10 @@ function FormCadastroPessoa() {
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>
+                <Row >
+                
+                <Col style={{textAlign:"center"}}>
+
                   <Button
                     className="text=center"
                     variant="success"
@@ -234,12 +238,17 @@ function FormCadastroPessoa() {
                   >
                     Cadastrar
                   </Button>
+                </Col>
+                <Col style={{textAlign:"center"}}>
 
                   <Link to={"/"}>
                     <Button variant="secondary" type="submit">
                       Cancelar
                     </Button>
                   </Link>
+                </Col>
+                </Row>
+
                 </Card.Footer>
               </Card>
             </Row>
