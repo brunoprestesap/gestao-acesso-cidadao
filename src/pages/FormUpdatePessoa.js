@@ -44,6 +44,11 @@ export default function FormUpdatePessoa() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
+  async function handleDelete(e) {
+    await axios.delete(`https://ironrest.cyclic.app/AcessCidadao/${userId}`);
+    navigate("/");
+  }
+
   async function handleSubimit(e) {
     e.preventDefault();
     try {
@@ -241,13 +246,21 @@ export default function FormUpdatePessoa() {
                         type="submit"
                         onClick={handleSubimit}
                       >
-                        Cadastrar
+                        Salvar
                       </Button>
                       <Link to={"/"}>
-                        <Button variant="danger">
+                        <Button variant="warning"
+                        style={{ marginRight: "25px" }}
+                        >
                           Cancelar
                         </Button>
                       </Link>
+                      <Button
+                        variant="danger"
+                        onClick={handleDelete}
+                      >
+                        Delete
+                      </Button>
                     </Col>
                   </Row>
                 </Container>
