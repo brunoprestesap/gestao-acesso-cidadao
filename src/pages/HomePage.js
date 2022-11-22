@@ -134,7 +134,7 @@ function HomePage() {
               <Form.Check
                 className="mt-2"
                 type="checkbox"
-                label="Filtra saídas pendentes"
+                label="Saídas pendentes"
                 name="active"
                 checked={filtraNoLocal}
                 onChange={() => {
