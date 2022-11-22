@@ -37,22 +37,38 @@ function HomePage() {
     getListaCidadaos();
   }, [reload, collectionAdress]);
   //
+  //horas
+  function dataHora() {
+    let agora = new Date();
+    let hora =
+      agora.getDate() +
+      '/' +
+      (1 + Number.parseInt(agora.getMonth())).toString() +
+      '/' +
+      agora.getFullYear() +
+      ' ' +
+      agora.getHours() +
+      'h' +
+      agora.getMinutes() +
+      'm';
+
+    return hora;
+  }
   // Botão registrar saida - handle
   async function handleSaida(cidadao) {
     //
-    console.log(cidadao, 'cidadao a ser apagado');
+    //console.log(cidadao, 'cidadao a ser apagado');
     //e.preventDefault();
     try {
       //clonando o form para que possamos fazer as alterações necessárias
-      let agora = new Date();
-      const horaSaida = agora.toISOString().slice(0, 16).replace('T', ' h ');
-      console.log(horaSaida);
+
       //cidadao.acessos[0];
-      let clone = { ...cidadao }; //array da saida
+      let clone = { ...cidadao }; //array da saida sempre no acessos[0] , na criação é sempre usado o unshift()
       delete clone._id;
+      // se pessoa esta saindo anotar que não está mais no local
       clone.noLocal = false;
-      clone.acessos[0].saida = horaSaida;
-      console.log(clone, 'clone da saida');
+      clone.acessos[0].saida = dataHora();
+      //console.log(clone, 'clone da saida');
 
       await axios.put(
         `https://ironrest.cyclic.app/AcessCidadao/${cidadao._id}`,
@@ -62,7 +78,7 @@ function HomePage() {
       toast.success('Saída anotada, atualizando página...');
       setReload(!reload);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       toast.error('Algo deu errado. Tente novamente.');
     }
     //
@@ -118,7 +134,7 @@ function HomePage() {
               <Form.Check
                 className="mt-2"
                 type="checkbox"
-                label="Filtra saídas pendentes"
+                label="Saídas pendentes"
                 name="active"
                 checked={filtraNoLocal}
                 onChange={() => {
@@ -146,7 +162,7 @@ function HomePage() {
               <th>Foto</th>
               <th>Nome</th>
               <th>Documento</th>
-              <th>Acessibilidade</th>
+              <th> 👩‍🦯 👨‍🦽 </th>
               <th>Último acesso</th>
               <th>Saida</th>
               <th>Local</th>

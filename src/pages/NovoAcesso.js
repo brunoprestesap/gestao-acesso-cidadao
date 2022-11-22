@@ -41,7 +41,7 @@ export default function NovoAcesso() {
       const response = await axios.get(
         `https://ironrest.cyclic.app/AcessCidadao/${userID}`
       );
-      console.log(response.data);
+      /* console.log(response.data); */
       setCidadao(response.data);
       setIsLoading(false);
     }
@@ -49,13 +49,32 @@ export default function NovoAcesso() {
   }, [reload, userID]);
 
   async function handleEntrance(cidadao) {
-    console.log(cidadao, "Cidadão ingressando no recinto");
+ /*    console.log(cidadao, "Cidadão ingressando no recinto"); */
     /* cidadao.preventDefault(); */
 
     try {
-      let agora = new Date();
+
+      function dataHora() {
+        let agora = new Date();
+        let hora =
+          agora.getDate() +
+          '/' +
+          (1 + Number.parseInt(agora.getMonth())).toString() +
+          '/' +
+          agora.getFullYear() +
+          ' ' +
+          agora.getHours() +
+          'h' +
+          agora.getMinutes() +
+          'm';
+    
+        return hora;
+      }
+    
+
+      /* let agora = new Date();
       const horaEntrada = agora.toISOString().slice(0, 16).replace("T", " h ");
-      console.log(horaEntrada);
+      console.log(horaEntrada); */
 
       //cidadao.acessos[0] -> propriedade  ARRAY na collection "AcessCidadao"
       const clone = { ...cidadao };
@@ -64,14 +83,14 @@ export default function NovoAcesso() {
       clone.noLocal = true;
 
       const novoAcesso = {
-        entrada: horaEntrada,
+        entrada: dataHora(),
         saida: form.saida,
         servicoPublico: form.servicoPublico,
         local: form.local,
         obs: form.obs,
       };
       clone.acessos.unshift(novoAcesso);
-      console.log(clone);
+     /*  console.log(clone); */
 
       await axios.put(
         `https://ironrest.cyclic.app/AcessCidadao/${userID}`,
