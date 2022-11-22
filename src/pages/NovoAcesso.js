@@ -57,11 +57,11 @@ export default function NovoAcesso() {
       function dataHora() {
         let agora = new Date();
         let hora =
-          agora.getFullYear() +
-          '-' +
-          (1 + Number.parseInt(agora.getMonth())).toString() +
-          '-' +
           agora.getDate() +
+          '/' +
+          (1 + Number.parseInt(agora.getMonth())).toString() +
+          '/' +
+          agora.getFullYear() +
           ' ' +
           agora.getHours() +
           'h' +
@@ -70,6 +70,7 @@ export default function NovoAcesso() {
     
         return hora;
       }
+    
 
       /* let agora = new Date();
       const horaEntrada = agora.toISOString().slice(0, 16).replace("T", " h ");
