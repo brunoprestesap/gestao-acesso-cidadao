@@ -232,8 +232,8 @@ function HomePage() {
                   );
                 })}
           </tbody>
-          {isLoading && <Spinner animation="border" variant="warning" />}
         </Table>
+        {isLoading && <Spinner animation="border" variant="warning" />}
       </Container>
     </div>
   );
