@@ -48,7 +48,7 @@ function HomePage() {
       agora.getDate() +
       ' ' +
       agora.getHours() +
-      'h:' +
+      'h' +
       agora.getMinutes() +
       'm';
 
@@ -162,7 +162,7 @@ function HomePage() {
               <th>Foto</th>
               <th>Nome</th>
               <th>Documento</th>
-              <th>Acessibilidade</th>
+              <th> 👩‍🦯 👨‍🦽 </th>
               <th>Último acesso</th>
               <th>Saida</th>
               <th>Local</th>
