@@ -38,7 +38,7 @@ function HomePage() {
   }, [reload, collectionAdress]);
   //
   //horas
-  function dataHora(params) {
+  function dataHora() {
     let agora = new Date();
     let hora =
       agora.getFullYear() +
