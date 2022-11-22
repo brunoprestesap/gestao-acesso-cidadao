@@ -57,8 +57,8 @@ function FormCadastroPessoa() {
         {" "}
         FORMULÁRIO DE CADASTRO{" "}
       </h1>
-      <Row>
-        <Col>
+      
+        
           <Container>
             <Row className="justify-content-md-center">
               <Card
@@ -68,7 +68,11 @@ function FormCadastroPessoa() {
                 style={{ width: "70rem", marginTop: "50px" }}
                 className="mb-2"
               >
-                <Card.Body>
+              <Row style={{display: "flex", justifyContent:"center"}}>
+              <Card.Img variant="top" src={form.img} style={{ borderRadius: "20%", width: "15rem", marginTop: "50px" }}/>
+
+              </Row>
+                <Card.Body>                
                   <Card.Text>
                     <Form>
                       <Row>
@@ -226,6 +230,10 @@ function FormCadastroPessoa() {
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>
+                <Row >
+                
+                <Col style={{textAlign:"center"}}>
+
                   <Button
                     className="text=center"
                     variant="success"
@@ -234,38 +242,24 @@ function FormCadastroPessoa() {
                   >
                     Cadastrar
                   </Button>
+                </Col>
+                <Col style={{textAlign:"center"}}>
 
                   <Link to={"/"}>
                     <Button variant="secondary" type="submit">
                       Cancelar
                     </Button>
                   </Link>
+                </Col>
+                </Row>
+
                 </Card.Footer>
               </Card>
             </Row>
           </Container>
-        </Col>
-        <Col
-          className="col-lg-4"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            alignContent: "center",
-          }}
-        >
-          <Card border="primary">
-            <Card.Body>
-              <Container>
-                <img
-                  src={form.img}
-                  alt="Foto do Usuário Cadastrado"
-                  style={{ borderRadius: "20%" }}
-                ></img>
-              </Container>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+        
+        
+      
     </div>
   );
 }
