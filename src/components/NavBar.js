@@ -1,6 +1,6 @@
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import logo from '../assets/download.png';
+import logo from '../assets/concierge-32330_960_720.png';
 function NavBar() {
   return (
     <Navbar bg="dark" variant="dark">
