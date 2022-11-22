@@ -37,6 +37,23 @@ function HomePage() {
     getListaCidadaos();
   }, [reload, collectionAdress]);
   //
+  //horas
+  function dataHora(params) {
+    let agora = new Date();
+    let hora =
+      agora.getFullYear() +
+      '-' +
+      (1 + Number.parseInt(agora.getMonth())).toString() +
+      '-' +
+      agora.getDate() +
+      ' ' +
+      agora.getHours() +
+      'h:' +
+      agora.getMinutes() +
+      'm';
+
+    return hora;
+  }
   // Botão registrar saida - handle
   async function handleSaida(cidadao) {
     //
@@ -44,14 +61,13 @@ function HomePage() {
     //e.preventDefault();
     try {
       //clonando o form para que possamos fazer as alterações necessárias
-      let agora = new Date();
-      const horaSaida = agora.toISOString().slice(0, 16).replace('T', ' h ');
-      console.log(horaSaida);
+
       //cidadao.acessos[0];
-      let clone = { ...cidadao }; //array da saida
+      let clone = { ...cidadao }; //array da saida sempre no acessos[0] , na criação é sempre usado o unshift()
       delete clone._id;
+      // se pessoa esta saindo anotar que não está mais no local
       clone.noLocal = false;
-      clone.acessos[0].saida = horaSaida;
+      clone.acessos[0].saida = dataHora();
       console.log(clone, 'clone da saida');
 
       await axios.put(
