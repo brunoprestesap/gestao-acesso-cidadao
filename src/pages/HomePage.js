@@ -193,7 +193,15 @@ function HomePage() {
                       <td>
                         {cidadao.numDoc} {cidadao.numtipoDoc}
                       </td>
-                      <td>{cidadao.acessibilidade}</td>
+                      <td
+                        style={
+                          cidadao.acessibilidade === 'nenhuma'
+                            ? {}
+                            : { color: 'red' }
+                        }
+                      >
+                        {cidadao.acessibilidade}
+                      </td>
                       <td>
                         {!cidadao.noLocal ? (
                           <Link to={`/NovoAcesso/${cidadao._id}`}>
