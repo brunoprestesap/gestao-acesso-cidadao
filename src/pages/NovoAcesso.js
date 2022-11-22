@@ -49,28 +49,26 @@ export default function NovoAcesso() {
   }, [reload, userID]);
 
   async function handleEntrance(cidadao) {
- /*    console.log(cidadao, "Cidadão ingressando no recinto"); */
+    /*    console.log(cidadao, "Cidadão ingressando no recinto"); */
     /* cidadao.preventDefault(); */
 
     try {
-
       function dataHora() {
         let agora = new Date();
         let hora =
           agora.getDate() +
-          '/' +
+          "/" +
           (1 + Number.parseInt(agora.getMonth())).toString() +
-          '/' +
+          "/" +
           agora.getFullYear() +
-          ' ' +
+          " " +
           agora.getHours() +
-          'h' +
+          "h" +
           agora.getMinutes() +
-          'm';
-    
+          "m";
+
         return hora;
       }
-    
 
       /* let agora = new Date();
       const horaEntrada = agora.toISOString().slice(0, 16).replace("T", " h ");
@@ -90,7 +88,7 @@ export default function NovoAcesso() {
         obs: form.obs,
       };
       clone.acessos.unshift(novoAcesso);
-     /*  console.log(clone); */
+      /*  console.log(clone); */
 
       await axios.put(
         `https://ironrest.cyclic.app/AcessCidadao/${userID}`,
@@ -139,7 +137,9 @@ export default function NovoAcesso() {
                       <option>Selecione Destino</option>
                       {listSetores.map((setor) => {
                         return (
-                          <option value={setor.label}>{setor.label}</option>
+                          <option key={setor.label} value={setor.label}>
+                            {setor.label}
+                          </option>
                         );
                       })}
                     </Form.Select>
@@ -156,7 +156,7 @@ export default function NovoAcesso() {
                       <option>Selecione Serviço</option>
                       {listServices.map((service) => {
                         return (
-                          <option value={service.label}>{service.label}</option>
+                          <option key={service.label} value={service.label}>{service.label}</option>
                         );
                       })}
                     </Form.Select>
@@ -174,8 +174,8 @@ export default function NovoAcesso() {
                       defaultValue={form.obs}
                     >
                       <option>Selecione Motivo</option>
-                      <option value="audiencia">Audiência</option>                     
-                      <option value="Reunião">Reunião</option>                  
+                      <option value="audiencia">Audiência</option>
+                      <option value="Reunião">Reunião</option>
                       <option value="correios">Correio</option>
                       <option value="entrega">Entrega</option>
                       <option value="licitacao">Licitação</option>
