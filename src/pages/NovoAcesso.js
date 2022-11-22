@@ -53,9 +53,27 @@ export default function NovoAcesso() {
     /* cidadao.preventDefault(); */
 
     try {
-      let agora = new Date();
+
+      function dataHora() {
+        let agora = new Date();
+        let hora =
+          agora.getFullYear() +
+          '-' +
+          (1 + Number.parseInt(agora.getMonth())).toString() +
+          '-' +
+          agora.getDate() +
+          ' ' +
+          agora.getHours() +
+          'h' +
+          agora.getMinutes() +
+          'm';
+    
+        return hora;
+      }
+
+      /* let agora = new Date();
       const horaEntrada = agora.toISOString().slice(0, 16).replace("T", " h ");
-      console.log(horaEntrada);
+      console.log(horaEntrada); */
 
       //cidadao.acessos[0] -> propriedade  ARRAY na collection "AcessCidadao"
       const clone = { ...cidadao };
@@ -64,7 +82,7 @@ export default function NovoAcesso() {
       clone.noLocal = true;
 
       const novoAcesso = {
-        entrada: horaEntrada,
+        entrada: dataHora(),
         saida: form.saida,
         servicoPublico: form.servicoPublico,
         local: form.local,
