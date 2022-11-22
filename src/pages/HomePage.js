@@ -41,11 +41,11 @@ function HomePage() {
   function dataHora() {
     let agora = new Date();
     let hora =
-      agora.getFullYear() +
-      '-' +
-      (1 + Number.parseInt(agora.getMonth())).toString() +
-      '-' +
       agora.getDate() +
+      '/' +
+      (1 + Number.parseInt(agora.getMonth())).toString() +
+      '/' +
+      agora.getFullYear() +
       ' ' +
       agora.getHours() +
       'h' +
@@ -57,7 +57,7 @@ function HomePage() {
   // Botão registrar saida - handle
   async function handleSaida(cidadao) {
     //
-    console.log(cidadao, 'cidadao a ser apagado');
+    //console.log(cidadao, 'cidadao a ser apagado');
     //e.preventDefault();
     try {
       //clonando o form para que possamos fazer as alterações necessárias
@@ -68,7 +68,7 @@ function HomePage() {
       // se pessoa esta saindo anotar que não está mais no local
       clone.noLocal = false;
       clone.acessos[0].saida = dataHora();
-      console.log(clone, 'clone da saida');
+      //console.log(clone, 'clone da saida');
 
       await axios.put(
         `https://ironrest.cyclic.app/AcessCidadao/${cidadao._id}`,
@@ -78,7 +78,7 @@ function HomePage() {
       toast.success('Saída anotada, atualizando página...');
       setReload(!reload);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       toast.error('Algo deu errado. Tente novamente.');
     }
     //
