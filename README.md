@@ -1,3 +1,48 @@
+# Welcome to Projeto controle de acesso aos Prédios/Serviços públicos!
+
+Trata esta página, do 2º projeto entregue pela equipe:
+
+Annielli A. R. Cunha
+Bruno Prestes
+Sergio Francalino
+Anderson T. Toma
+
+Alunos do bootcamp, turma 92 da Ironhack: https://www.ironhack.com/br
+
+Dada a necessidade de controle aos prédios públicos e seus serviços, assim como a inexistência em vários locais públicos desse controle informatizado, nos propusemos o desenvolvimento deste aplicativo.
+
+O objetivo deste módulo foi demonstrar o uso do CRUD aprendido em aula no módulo 2, assim como o uso do REACT.
+
+# Funcionalidades
+
+O aplicativo controla o registro de novos cidadãos aos serviços públicos, sua presença e saída.
+Também mantém registro dos vários acessos
+
+## Registrar novo cidadão na base
+
+A janela no rota /novousuario permite a inclusão de link da foto assim com os dados de nome, gênero, Nascimento, documento e seu tipo, acessibilidade.
+
+## Alteração do Registro do cidadão
+
+A rota /usuario/:ID, que abre clicando no nome do cidadão na Home Page, permite a edição de todos o campos, assim como deletá-lo.
+Na mesma rota, no fim do formulário, é mostrado o registro de todos os acessos, do mais recente ao mais antigo.
+
+## Home Page
+
+Permite a visualização geral, com listagem de todos os cidadãos registrados suas fotos e dados principais de acesso (acessibilidade, local em que se encontra), os botões de registro de novo acesso e Registro de saída são de renderização condicional de acordo com a ação possível somente.
+Filtro específico para as Saídas Pendentes em check box.
+
+## Funcionalidade Novo Acesso
+
+Rota /NovoAcesso/: ID, permite a inclusão de observação, local e serviço público.
+A hora é registrada automaticamente.
+
+# React, React-Routes, Bootstrap, react-Hot-Toast
+
+As bibliotecas utilizadas foram as citadas acima.
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,4 +113,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
 # gestao-acesso-cidadao
