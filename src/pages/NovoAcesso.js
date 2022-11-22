@@ -41,7 +41,7 @@ export default function NovoAcesso() {
       const response = await axios.get(
         `https://ironrest.cyclic.app/AcessCidadao/${userID}`
       );
-      console.log(response.data);
+      /* console.log(response.data); */
       setCidadao(response.data);
       setIsLoading(false);
     }
@@ -49,7 +49,7 @@ export default function NovoAcesso() {
   }, [reload, userID]);
 
   async function handleEntrance(cidadao) {
-    console.log(cidadao, "Cidadão ingressando no recinto");
+ /*    console.log(cidadao, "Cidadão ingressando no recinto"); */
     /* cidadao.preventDefault(); */
 
     try {
@@ -90,7 +90,7 @@ export default function NovoAcesso() {
         obs: form.obs,
       };
       clone.acessos.unshift(novoAcesso);
-      console.log(clone);
+     /*  console.log(clone); */
 
       await axios.put(
         `https://ironrest.cyclic.app/AcessCidadao/${userID}`,
