@@ -1,11 +1,11 @@
-# Welcome to Projeto controle de acesso aos Prédios/Serviços públicos!
+# Bem Vindo ao Projeto do App ⧉ **Gate Control**  → *Controle de Acesso aos Prédios e Serviços Públicos*
 
 Trata esta página, do 2º projeto entregue pela equipe:
 
-Annielli A. R. Cunha
-Bruno Prestes
-Sergio Francalino
-Anderson T. Toma
+- *Annielli A. R. Cunha*
+- *Bruno Prestes*
+- *Sergio A. Francalino*
+- *Anderson T. Toma*
 
 Alunos do bootcamp, turma 92 da Ironhack: https://www.ironhack.com/br
 
@@ -15,8 +15,7 @@ O objetivo deste módulo foi demonstrar o uso do CRUD aprendido em aula no módu
 
 # Funcionalidades
 
-O aplicativo controla o registro de novos cidadãos aos serviços públicos, sua presença e saída.
-Também mantém registro dos vários acessos
+O aplicativo **Gate Control** foi idealizado para gestão do *acesso de pessoas* em repartições, locais e serviços públicos. Sobre a presença e saída destas. Ainda, tem relatório individual dos registros dos respectivos acessos e serviços.
 
 ## Registrar novo cidadão na base
 
