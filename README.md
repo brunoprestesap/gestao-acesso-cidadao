@@ -2,10 +2,10 @@
 
 Trata esta página, do 2º projeto entregue pela equipe:
 
-Annielli A. R. Cunha
-Bruno Prestes
-Sergio Francalino
-Anderson T. Toma
+- Annielli A. R. Cunha
+- Bruno Prestes
+- Sergio A. Francalino
+- Anderson T. Toma
 
 Alunos do bootcamp, turma 92 da Ironhack: https://www.ironhack.com/br
 
