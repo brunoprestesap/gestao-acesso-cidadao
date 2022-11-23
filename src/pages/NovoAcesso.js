@@ -49,28 +49,26 @@ export default function NovoAcesso() {
   }, [reload, userID]);
 
   async function handleEntrance(cidadao) {
- /*    console.log(cidadao, "Cidadão ingressando no recinto"); */
+    /*    console.log(cidadao, "Cidadão ingressando no recinto"); */
     /* cidadao.preventDefault(); */
 
     try {
-
       function dataHora() {
         let agora = new Date();
         let hora =
           agora.getDate() +
-          '/' +
+          "/" +
           (1 + Number.parseInt(agora.getMonth())).toString() +
-          '/' +
+          "/" +
           agora.getFullYear() +
-          ' ' +
+          " " +
           agora.getHours() +
-          'h' +
+          "h" +
           agora.getMinutes() +
-          'm';
-    
+          "m";
+
         return hora;
       }
-    
 
       /* let agora = new Date();
       const horaEntrada = agora.toISOString().slice(0, 16).replace("T", " h ");
@@ -90,7 +88,7 @@ export default function NovoAcesso() {
         obs: form.obs,
       };
       clone.acessos.unshift(novoAcesso);
-     /*  console.log(clone); */
+      /*  console.log(clone); */
 
       await axios.put(
         `https://ironrest.cyclic.app/AcessCidadao/${userID}`,
@@ -107,107 +105,124 @@ export default function NovoAcesso() {
 
   return (
     <Container className="my-4">
-      {!isLoading && (
-        <Card className="text-center" bg="light">
-          <Card.Header>
-            <Card.Title>
-              <h1>⧉{cidadao.nome} </h1>
-              <img
-                src={cidadao.img}
-                alt="foto cidadao"
-                style={{ width: "160px" }}
-              />
-            </Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              <b>Documento: {cidadao.tipoDoc.toUpperCase()}</b>
-              <b> ↔ nº {cidadao.numDoc}</b>
-            </Card.Subtitle>
-          </Card.Header>
+      <fieldset>
+        {!isLoading && (
+          <Card className="text-center" bg="light">
+            <Card.Header>
+              <Card.Title>
+                <legend> NOVO ACESSO</legend>
+                <h1>⧉{cidadao.nome} </h1>
+                <img
+                  src={cidadao.img}
+                  alt="foto cidadao"
+                  style={{ width: "160px" }}
+                />
+              </Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
+                <legend>Documento: {cidadao.tipoDoc.toUpperCase()}</legend>
+                <legend> Nº {cidadao.numDoc}</legend>
+              </Card.Subtitle>
+            </Card.Header>
 
-          <Card.Body>
-            <Form>
-              <Row>
-                <Col>
-                  <Form.Group className="mb-3">
-                    <Form.Label>{<b>Local de Destino</b>}</Form.Label>
-                    <Form.Select
-                      name="local"
-                      defaultValue={form.local}
-                      onChange={handleChange}
-                      autoFocus
-                    >
-                      <option>Selecione Destino</option>
-                      {listSetores.map((setor) => {
-                        return (
-                          <option value={setor.label}>{setor.label}</option>
-                        );
-                      })}
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group className="mb-3">
-                    <Form.Label>{<b>Serviço Público</b>}</Form.Label>
-                    <Form.Select
-                      name="servicoPublico"
-                      defaultValue={form.servicoPublico}
-                      onChange={handleChange}
-                    >
-                      <option>Selecione Serviço</option>
-                      {listServices.map((service) => {
-                        return (
-                          <option value={service.label}>{service.label}</option>
-                        );
-                      })}
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="obs">
-                      {<b>Observação → motivo?</b>}
-                    </Form.Label>
-                    <Form.Select
-                      id="obs"
-                      name="obs"
-                      onChange={handleChange}
-                      defaultValue={form.obs}
-                    >
-                      <option>Selecione Motivo</option>
-                      <option value="audiencia">Audiência</option>                     
-                      <option value="Reunião">Reunião</option>                  
-                      <option value="correios">Correio</option>
-                      <option value="entrega">Entrega</option>
-                      <option value="licitacao">Licitação</option>
-                      <option value="conciliacao">Conciliação</option>
-                      <option value="almoco">Almoço</option>
-                      <option value="trabalho">Trabalho</option>
-                      <option value="visita">Visita</option>
-                      <option value="outros">Outros</option>
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-              </Row>
-            </Form>
-          </Card.Body>
+            <Card.Body>
+              <Form>
+                <Row>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>
+                        <legend>Local de Destino</legend>
+                      </Form.Label>
+                      <Form.Select
+                        name="local"
+                        defaultValue={form.local}
+                        onChange={handleChange}
+                        autoFocus
+                      >
+                        <option>
+                          <legend>Selecione Destino</legend>
+                        </option>
+                        {listSetores.map((setor) => {
+                          return (
+                            <option key={setor.label} value={setor.label}>
+                              {setor.label}
+                            </option>
+                          );
+                        })}
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>
+                        <legend>Serviço Público</legend>
+                      </Form.Label>
+                      <Form.Select
+                        name="servicoPublico"
+                        defaultValue={form.servicoPublico}
+                        onChange={handleChange}
+                      >
+                        <option>
+                          <legend>Selecione Serviço</legend>
+                        </option>
+                        {listServices.map((service) => {
+                          return (
+                            <option key={service.label} value={service.label}>
+                              {service.label}
+                            </option>
+                          );
+                        })}
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label htmlFor="obs">
+                        <legend>Observação → motivo</legend>
+                      </Form.Label>
+                      <Form.Select
+                        id="obs"
+                        name="obs"
+                        onChange={handleChange}
+                        defaultValue={form.obs}
+                      >
+                        <option>
+                          <legend>Selecione Motivo</legend>
+                        </option>
+                        <option value="audiencia">Audiência</option>
+                        <option value="Reunião">Reunião</option>
+                        <option value="correios">Correio</option>
+                        <option value="entrega">Entrega</option>
+                        <option value="licitacao">Licitação</option>
+                        <option value="conciliacao">Conciliação</option>
+                        <option value="almoco">Almoço</option>
+                        <option value="trabalho">Trabalho</option>
+                        <option value="visita">Visita</option>
+                        <option value="outros">Outros</option>
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                </Row>
+              </Form>
+            </Card.Body>
 
-          <Card.Footer>
-            <Button
-              className="justify-content-between"
-              variant="success"
-              type="submit"
-              onClick={() => handleEntrance(cidadao)}
-            >
-              Salvar
-            </Button>
-            <Link to={"/"}>
-              <Button variant="secondary" type="submit">
-                Cancelar
+            <Card.Footer>
+              <Button
+                className="justify-content-between"
+                variant="success"
+                type="submit"
+                onClick={() => handleEntrance(cidadao)}
+              >
+                Salvar
               </Button>
-            </Link>
-          </Card.Footer>
-        </Card>
-      )}
+              <Link to={"/"}>
+                <Button variant="secondary" type="submit">
+                  Cancelar
+                </Button>
+              </Link>
+            </Card.Footer>
+          </Card>
+        )}
+      </fieldset>
     </Container>
   );
 }
