@@ -1,6 +1,6 @@
 # Bem Vindo ao Projeto do App ⧉ **Gate Control**  → *Controle de Acesso aos Prédios e Serviços Públicos*
 
-Trata esta página, do 2º projeto BOOTCAMP ENAP WDFT92, entregue pela equipe :
+Trata esta página, do 2º projeto BOOTCAMP IRONHACK/ENAP WDFT92, entregue pela equipe :
 
 - *Annielli A. R. Cunha*
 - *Bruno Prestes*
