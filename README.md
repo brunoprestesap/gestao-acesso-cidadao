@@ -1,4 +1,4 @@
-# Bem Vindo ao Projeto do "App Gate Control → Controle de acesso aos Prédios e Serviços públicos!"
+# Bem Vindo ao Projeto do App ##"Gate Control → Controle de acesso aos Prédios e Serviços públicos!"
 
 Trata esta página, do 2º projeto entregue pela equipe:
 
