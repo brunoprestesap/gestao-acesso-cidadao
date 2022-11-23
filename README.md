@@ -15,7 +15,7 @@ O objetivo deste módulo foi demonstrar o uso do CRUD aprendido em aula no módu
 
 # Funcionalidades
 
-O aplicativo **Gate Control** foi idealizado para gestão do *acesso de pessoas* em repartições, locais e serviços públicos. Presença e saída destas. Ainda, mantém registro individual dos respectivos acessos e serviços.
+O aplicativo **Gate Control** foi idealizado para gestão do *acesso de pessoas* em repartições, locais e serviços públicos. Sobre a presença e saída destas. Ainda, tem relatório individual dos registros dos respectivos acessos e serviços.
 
 ## Registrar novo cidadão na base
 
