@@ -111,7 +111,7 @@ export default function NovoAcesso() {
             <Card.Header>
               <Card.Title>
                 <legend> NOVO ACESSO</legend>
-                <h1>⧉{cidadao.nome} </h1>
+                <h1>⧉{cidadao.nome}</h1>
                 <img
                   src={cidadao.img}
                   alt="foto cidadao"
@@ -138,9 +138,7 @@ export default function NovoAcesso() {
                         onChange={handleChange}
                         autoFocus
                       >
-                        <option>
-                          <legend>Selecione Destino</legend>
-                        </option>
+                        <option>Selecione Destino</option>
                         {listSetores.map((setor) => {
                           return (
                             <option key={setor.label} value={setor.label}>
@@ -161,9 +159,7 @@ export default function NovoAcesso() {
                         defaultValue={form.servicoPublico}
                         onChange={handleChange}
                       >
-                        <option>
-                          <legend>Selecione Serviço</legend>
-                        </option>
+                        <option>Selecione Serviço</option>
                         {listServices.map((service) => {
                           return (
                             <option key={service.label} value={service.label}>
@@ -185,9 +181,7 @@ export default function NovoAcesso() {
                         onChange={handleChange}
                         defaultValue={form.obs}
                       >
-                        <option>
-                          <legend>Selecione Motivo</legend>
-                        </option>
+                        <option>Selecione Motivo</option>
                         <option value="audiencia">Audiência</option>
                         <option value="Reunião">Reunião</option>
                         <option value="correios">Correio</option>
@@ -205,9 +199,8 @@ export default function NovoAcesso() {
               </Form>
             </Card.Body>
 
-            <Card.Footer>
+            <Card.Footer className="d-flex justify-content-around">
               <Button
-                className="justify-content-between"
                 variant="success"
                 type="submit"
                 onClick={() => handleEntrance(cidadao)}
