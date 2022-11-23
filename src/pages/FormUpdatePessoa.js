@@ -101,7 +101,7 @@ export default function FormUpdatePessoa() {
                     <Form.Group className="mb-3" controlId="dataNasc">
                       <Form.Label>Data Nasc.</Form.Label>
                       <Form.Control
-                        type="text"
+                        type="date"
                         placeholder="Data Nascimento"
                         name="dataNasc"
                         value={form.dataNasc}
