@@ -2,12 +2,15 @@
 
 obs: as fotos e nomes foram reaproveitadas principalmente da documentação dos Labs de aula.
 
+
 Trata esta página, do 2º projeto *BOOTCAMP IRONHACK/ENAP*, entregue pela equipe :
+
 
 - _Annielli A. R. Cunha_
 - _Bruno Prestes_
 - _Sergio A. Francalino_
 - _Anderson T. Toma_
+
 
 Alunos do bootcamp, turma Web Dev 92 da Ironhack: https://www.ironhack.com/br
 
