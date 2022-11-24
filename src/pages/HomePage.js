@@ -1,15 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import {
-  Container,
-  Button,
-  Table,
-  Spinner,
-  Form,
-  InputGroup,
-  Col,
-  Row,
-} from 'react-bootstrap';
+import { Button, Table, Spinner, Form, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 //
 import toast from 'react-hot-toast';
@@ -114,10 +105,10 @@ function HomePage() {
   //-------------------------------//
   //
   return (
-    <div>
-      <Container className="my-3">
-        <Row>
-          <Col className="sm" xs={2}>
+    <div className="mx-2">
+      <div className="container my-3 max-width">
+        <div className="row">
+          <div className="col-sm-3">
             <Button
               variant="primary"
               size="md"
@@ -128,11 +119,10 @@ function HomePage() {
             >
               Reload
             </Button>
-          </Col>
-          <Col xs={4}>
+          </div>
+          <div className="mt-2 col-sm-3">
             <Form.Group>
               <Form.Check
-                className="mt-2"
                 type="checkbox"
                 label="Saídas pendentes"
                 name="active"
@@ -142,8 +132,8 @@ function HomePage() {
                 }}
               />
             </Form.Group>
-          </Col>
-          <Col xs={6}>
+          </div>
+          <div className="col-sm-6">
             <InputGroup>
               <Form.Control
                 type="text"
@@ -152,11 +142,11 @@ function HomePage() {
                 value={search}
               />
             </InputGroup>
-          </Col>
-        </Row>
-      </Container>
-      <Container className="table-striped">
-        <Table striped bordered hover>
+          </div>
+        </div>
+      </div>
+      <div className="mx-0">
+        <Table striped bordered hover responsive size="sm">
           <thead>
             <tr>
               <th>Foto</th>
@@ -177,7 +167,7 @@ function HomePage() {
                 )
                 .map((cidadao) => {
                   return (
-                    <tr style={{ fontSize: '0.9rem' }} key={cidadao._id}>
+                    <tr style={{ fontSize: '0.8rem' }} key={cidadao._id}>
                       <td>
                         <img
                           src={cidadao.img}
@@ -242,7 +232,7 @@ function HomePage() {
           </tbody>
         </Table>
         {isLoading && <Spinner animation="border" variant="warning" />}
-      </Container>
+      </div>
     </div>
   );
 }
