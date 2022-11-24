@@ -1,13 +1,15 @@
-# Bem Vindo ao Projeto do App ⧉ **Gate Control**  → *Controle de Acesso aos Prédios e Serviços Públicos*
+# Bem Vindo ao Projeto do App ⧉ **Gate Control** → _Controle de Acesso aos Prédios e Serviços Públicos_
 
-Trata esta página, do 2º projeto entregue pela equipe:
+obs: as fotos e nomes foram reaproveitadas principalmente da documentação dos Labs de aula.
 
-- *Annielli A. R. Cunha*
-- *Bruno Prestes*
-- *Sergio A. Francalino*
-- *Anderson T. Toma*
+Trata esta página, do 2º projeto *BOOTCAMP IRONHACK/ENAP*, entregue pela equipe :
 
-Alunos do bootcamp, turma 92 da Ironhack: https://www.ironhack.com/br
+- _Annielli A. R. Cunha_
+- _Bruno Prestes_
+- _Sergio A. Francalino_
+- _Anderson T. Toma_
+
+Alunos do bootcamp, turma Web Dev 92 da Ironhack: https://www.ironhack.com/br
 
 Dada a necessidade de controle aos prédios públicos e seus serviços, assim como a inexistência em vários locais públicos desse controle informatizado, nos propusemos o desenvolvimento deste aplicativo.
 
@@ -15,7 +17,7 @@ O objetivo deste módulo foi demonstrar o uso do CRUD aprendido em aula no módu
 
 # Funcionalidades
 
-O aplicativo **Gate Control** foi idealizado para gestão do *acesso de pessoas* em repartições, locais e serviços públicos. Sobre a presença e saída destas. Ainda, tem relatório individual dos registros dos respectivos acessos e serviços.
+O aplicativo **Gate Control** foi idealizado para gestão do _acesso de pessoas_ em repartições, locais e serviços públicos. Sobre a presença e saída destas. Ainda, tem relatório individual dos registros dos respectivos acessos e serviços.
 
 ## Registrar novo cidadão na base
 
